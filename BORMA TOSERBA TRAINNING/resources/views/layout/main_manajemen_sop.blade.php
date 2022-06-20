@@ -38,9 +38,6 @@
 
         <!-- Touchspin -->
         <link type="text/css" href="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/bootstrap-touchspin.css') }}" rel="stylesheet">
-
-        <!-- Vendor CSS -->
-        <link rel="stylesheet" href="{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/nestable.css') }}">
     </head>
 
     <body class=" layout-fluid"> 
@@ -77,7 +74,6 @@
                                     type="button">
                                 <span class="material-icons">menu</span>
                             </button>
-                        
 
                             <!-- Brand -->
                             <a href="./" >
@@ -237,7 +233,6 @@
 
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
-
                 <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
                     <div class="mdk-drawer js-mdk-drawer"
                         id="default-drawer">
@@ -269,8 +264,8 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./manajemen_sop">
+                                        <li class="sidebar-menu-item active">
+                                            <a class="sidebar-menu-button" href="#">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Manajemen SOP
                                             </a>
                                         </li>
@@ -279,7 +274,7 @@
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Papan Peringkat
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item open">
+                                        <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manajemen_karyawan">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Manajemen Karyawan
                                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
@@ -290,8 +285,8 @@
                                                         <span class="sidebar-menu-text">Manajemen Akun</span>
                                                     </a>
                                                 </li>
-                                                <li class="sidebar-menu-item active">
-                                                    <a class="sidebar-menu-button" href="#">
+                                                <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="./manajemen_data">
                                                         <span class="sidebar-menu-text">Manajemen Data</span>
                                                     </a>
                                                 </li>
@@ -335,7 +330,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     @yield('container')
                     
                 </div>
@@ -346,11 +341,12 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="ImportExcel">
+
+        <div class="modal fade" id="TambahSOP">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-primary">
-                        <h4 class="modal-title text-white">Import Excel</h4>
+                        <h4 class="modal-title text-white">Tambah SOP</h4>
                         <button type="button"
                                 class="close text-white"
                                 data-dismiss="modal"
@@ -359,20 +355,48 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="./manajemen_data/import_excel" method="post" enctype="multipart/form-data">
+                        <form action="./manajemen_sop/tambah_sop" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilih File Excel</label>
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Judul SOP</label>
                                 <div class="col-md-9">
                                     <div class="custom-file">
-                                        <input name="file_excel_data_karyawan" type="file" id="file_excel" class="custom-file-input" accept=".xlsx" required>
-                                        <label for="file_excel" class="custom-file-label">Pilih FIle</label>
+                                        <input name="judul_sop" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Keterangan Singkat</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="keterangan_singkat" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Foto SOP</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <!--Jika Tidak Ada Foto-->
+                                        <input type="text" name="foto_kosong" class="form-control" value="empty.png" required hidden>
+                                        <!--Jika Ada Foto-->
+                                        <input name="foto_sop" type="file" id="foto_sop" class="custom-file-input" accept="image/*">
+                                        <label for="foto_sop" class="custom-file-label">Pilih Foto</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">File SOP</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="file_sop" type="file" id="file_sop" class="custom-file-input" accept=".pdf*" required>
+                                        <label for="file_sop" class="custom-file-label">Pilih File</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Import</button>
+                                    <button type="submit" class="btn btn-success">Tambah</button>
                                 </div>
                             </div>
                         </form>
@@ -382,12 +406,14 @@
         </div>
 
         @elseif(Session::get('level')=="2")
+        
         <?php return redirect('./') ?>
 
         @else
         <?php return redirect('./') ?>
         
         @endif
+        
 
         <!-- jQuery -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.min.js') }}"></script>
@@ -434,14 +460,6 @@
         <!-- Tables -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/toggle-check-all.js') }}"></script>
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/check-selected-row.js') }}"></script>
-
-        <!-- Vendor JS -->
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.nestable.js') }}"></script>
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.bootstrap-touchspin.js') }}"></script>
-
-        <!-- Initialize -->
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/nestable.js') }}"></script>
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/touchspin.js') }}"></script>
 
     </body>
 </html>

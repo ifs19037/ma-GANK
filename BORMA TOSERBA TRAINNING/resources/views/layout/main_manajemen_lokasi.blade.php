@@ -279,19 +279,19 @@
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Papan Peringkat
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item open">
+                                        <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manajemen_karyawan">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Manajemen Karyawan
                                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                             </a>
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_karyawan">
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_akun">
+                                                    <a class="sidebar-menu-button" href="#">
                                                         <span class="sidebar-menu-text">Manajemen Akun</span>
                                                     </a>
                                                 </li>
-                                                <li class="sidebar-menu-item active">
-                                                    <a class="sidebar-menu-button" href="#">
+                                                <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="./manajemen_data">
                                                         <span class="sidebar-menu-text">Manajemen Data</span>
                                                     </a>
                                                 </li>
@@ -302,7 +302,7 @@
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Ulang Tahun Bulan Ini
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item">
+                                        <li class="sidebar-menu-item open">
                                             <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manajemen_informasi">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">tune</i> Manajemen Informasi
                                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
@@ -310,7 +310,7 @@
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_informasi">
                                                 <li class="sidebar-menu-item">
                                                     <a class="sidebar-menu-button" href="./manajemen_pengumuman">
-                                                        <span class="sidebar-menu-text">Manajemen Pengumuman</span>
+                                                        <span class="sidebar-menu-text">Manajemen Pengumumans</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
@@ -323,8 +323,8 @@
                                                         <span class="sidebar-menu-text">Divisi</span>
                                                     </a>
                                                 </li>
-                                                <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./lokasi">
+                                                <li class="sidebar-menu-item active">
+                                                    <a class="sidebar-menu-button" href="#">
                                                         <span class="sidebar-menu-text">Lokasi</span>
                                                     </a>
                                                 </li>
@@ -346,11 +346,12 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="ImportExcel">
+
+        <div class="modal fade" id="TambahLokasi">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-primary">
-                        <h4 class="modal-title text-white">Import Excel</h4>
+                        <h4 class="modal-title text-white">Tambah Lokasi</h4>
                         <button type="button"
                                 class="close text-white"
                                 data-dismiss="modal"
@@ -359,20 +360,19 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="./manajemen_data/import_excel" method="post" enctype="multipart/form-data">
+                        <form action="./lokasi/tambah_lokasi" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilih File Excel</label>
+                                <label for="qtitle" class="col-form-label form-label col-md-3">LOKASI</label>
                                 <div class="col-md-9">
                                     <div class="custom-file">
-                                        <input name="file_excel_data_karyawan" type="file" id="file_excel" class="custom-file-input" accept=".xlsx" required>
-                                        <label for="file_excel" class="custom-file-label">Pilih FIle</label>
+                                        <input name="nama_lokasi" type="text" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Import</button>
+                                    <button type="submit" class="btn btn-success">Tambah</button>
                                 </div>
                             </div>
                         </form>

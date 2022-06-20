@@ -38,9 +38,6 @@
 
         <!-- Touchspin -->
         <link type="text/css" href="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/bootstrap-touchspin.css') }}" rel="stylesheet">
-
-        <!-- Vendor CSS -->
-        <link rel="stylesheet" href="{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/nestable.css') }}">
     </head>
 
     <body class=" layout-fluid"> 
@@ -77,10 +74,9 @@
                                     type="button">
                                 <span class="material-icons">menu</span>
                             </button>
-                        
 
                             <!-- Brand -->
-                            <a href="./" >
+                            <a href="../" >
                                 <img src="{{ URL::asset('asset/image/logo/logo_prama.png') }}" height="60px" style="padding:10px;"/>
                             </a>
 
@@ -219,7 +215,7 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
                                         <img src="{{ URL::asset('asset/u_file/foto_profil/user.png') }}" alt="Avatar" class="rounded-circle" width="40"></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="./keluar">
+                                        <a class="dropdown-item" href="../keluar">
                                             <i class="material-icons">lock</i> Keluar
                                         </a>
                                     </div>
@@ -237,7 +233,6 @@
 
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
-
                 <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
                     <div class="mdk-drawer js-mdk-drawer"
                         id="default-drawer">
@@ -247,58 +242,58 @@
                                     <div class="sidebar-heading">MENU</div>
                                     <ul class="sidebar-menu sm-active-button-bg">
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./">
+                                            <a class="sidebar-menu-button" href="../">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i> Dashboard
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item">
+                                        <li class="sidebar-menu-item open">
                                             <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manajemen_pelatihan">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Manajemen Pelatihan
                                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                             </a>
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_pelatihan">
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_materi">
+                                                    <a class="sidebar-menu-button" href="../manajemen_materi">
                                                         <span class="sidebar-menu-text">Manajemen Materi</span>
                                                     </a>
                                                 </li>
-                                                <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_kuis">
+                                                <li class="sidebar-menu-item active">
+                                                    <a class="sidebar-menu-button" href="../manajemen_kuis">
                                                         <span class="sidebar-menu-text">Manajemen Kuis</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./manajemen_sop">
+                                            <a class="sidebar-menu-button" href="../manajemen_sop">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Manajemen SOP
                                             </a>
                                         </li>
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./papan_peringkat">
+                                            <a class="sidebar-menu-button" href="../papan_peringkat">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Papan Peringkat
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item open">
+                                        <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manajemen_karyawan">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Manajemen Karyawan
                                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                             </a>
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_karyawan">
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_akun">
+                                                    <a class="sidebar-menu-button" href="../manajemen_akun">
                                                         <span class="sidebar-menu-text">Manajemen Akun</span>
                                                     </a>
                                                 </li>
-                                                <li class="sidebar-menu-item active">
-                                                    <a class="sidebar-menu-button" href="#">
+                                                <li class="sidebar-menu-item">
+                                                    <a class="sidebar-menu-button" href="../manajemen_data">
                                                         <span class="sidebar-menu-text">Manajemen Data</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./ulang_tahun_bulan_ini">
+                                            <a class="sidebar-menu-button" href="../ulang_tahun_bulan_ini">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Ulang Tahun Bulan Ini
                                             </a>
                                         </li>
@@ -309,22 +304,22 @@
                                             </a>
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_informasi">
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_pengumuman">
+                                                    <a class="sidebar-menu-button" href="../manajemen_pengumuman">
                                                         <span class="sidebar-menu-text">Manajemen Pengumuman</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./jabatan">
+                                                    <a class="sidebar-menu-button" href="../jabatan">
                                                         <span class="sidebar-menu-text">Jabatan</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./divisi">
+                                                    <a class="sidebar-menu-button" href="../divisi">
                                                         <span class="sidebar-menu-text">Divisi</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./lokasi">
+                                                    <a class="sidebar-menu-button" href="../lokasi">
                                                         <span class="sidebar-menu-text">Lokasi</span>
                                                     </a>
                                                 </li>
@@ -335,7 +330,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     @yield('container')
                     
                 </div>
@@ -346,48 +341,16 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="ImportExcel">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                        <h4 class="modal-title text-white">Import Excel</h4>
-                        <button type="button"
-                                class="close text-white"
-                                data-dismiss="modal"
-                                aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="./manajemen_data/import_excel" method="post" enctype="multipart/form-data">
-                        @csrf
-                            <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilih File Excel</label>
-                                <div class="col-md-9">
-                                    <div class="custom-file">
-                                        <input name="file_excel_data_karyawan" type="file" id="file_excel" class="custom-file-input" accept=".xlsx" required>
-                                        <label for="file_excel" class="custom-file-label">Pilih FIle</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Import</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         @elseif(Session::get('level')=="2")
+        
         <?php return redirect('./') ?>
 
         @else
         <?php return redirect('./') ?>
         
         @endif
+        
 
         <!-- jQuery -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.min.js') }}"></script>
@@ -434,14 +397,6 @@
         <!-- Tables -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/toggle-check-all.js') }}"></script>
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/check-selected-row.js') }}"></script>
-
-        <!-- Vendor JS -->
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.nestable.js') }}"></script>
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.bootstrap-touchspin.js') }}"></script>
-
-        <!-- Initialize -->
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/nestable.js') }}"></script>
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/touchspin.js') }}"></script>
 
     </body>
 </html>

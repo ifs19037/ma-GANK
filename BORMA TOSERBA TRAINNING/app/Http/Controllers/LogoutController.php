@@ -8,7 +8,7 @@ use Session;
 
 class LogoutController extends Controller
 {
-    public function logout()
+    public function keluar()
     {
         Session::flush();
         return redirect('./');

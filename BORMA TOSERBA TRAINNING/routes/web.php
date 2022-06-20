@@ -19,13 +19,64 @@ Route::get('/', function () {
 
 Route::post('/PostLogin', 'App\Http\Controllers\LoginController@PostLogin');
 
-Route::get('/logout', 'App\Http\Controllers\LogoutController@logout');
+Route::get('/keluar', 'App\Http\Controllers\LogoutController@keluar');
 
 Route::get('/manajemen_data', 'App\Http\Controllers\KaryawanController@ManajemenData');
-
-Route::get('/tambah_data', function () {
-    return view('tambah_data');
-});
+// Route::get('/tambah_data', function () {
+//     return view('tambah_data');
+// });
+Route::get('/tambah_data', 'App\Http\Controllers\KaryawanController@TambahData');
 Route::post('/PostTambahDataKaryawan', 'App\Http\Controllers\KaryawanController@PostTambahDataKaryawan');
-Route::post('/manajamen_data/import_excel', 'App\Http\Controllers\KaryawanController@DataKaryawanImportExcel');
-Route::get('/manajamen_data/export_excel','App\Http\Controllers\KaryawanController@DataKaryawanExportExcel');
+Route::post('/manajemen_data/import_excel', 'App\Http\Controllers\KaryawanController@DataKaryawanImportExcel');
+Route::get('/manajemen_data/export_excel','App\Http\Controllers\KaryawanController@DataKaryawanExportExcel');
+Route::get('/detail_karyawan/{nik_karyawan}', 'App\Http\Controllers\KaryawanController@DetailDataKaryawan');
+Route::post('/PostEditDataKaryawan', 'App\Http\Controllers\KaryawanController@PostEditDataKaryawan');
+Route::get('/hapus_data_karyawan/{nik_karyawan}', 'App\Http\Controllers\KaryawanController@HapusDataKaryawan');
+
+Route::get('/manajemen_akun', 'App\Http\Controllers\AkunController@ManajemenAkun');
+Route::post('/manajemen_akun/tambah_akun', 'App\Http\Controllers\AkunController@PostTambahAkun');
+Route::post('/manajemen_akun/import_excel', 'App\Http\Controllers\AkunController@AkunImportExcel');
+Route::get('/hapus_akun/{nik_akun}', 'App\Http\Controllers\AkunController@HapusAkun');
+
+Route::get('/manajemen_kuis', 'App\Http\Controllers\KuisController@ManajemenKuis');
+Route::post('/manajemen_kuis/tambah_kuis', 'App\Http\Controllers\KuisController@PostTambahKuis');
+Route::get('/detail_kuis/{id_kuis}', 'App\Http\Controllers\KuisController@DetailKuis');
+Route::post('/PostEditKuis', 'App\Http\Controllers\KuisController@PostEditKuis');
+
+Route::get('/jabatan', 'App\Http\Controllers\InformasiController@ManajemenJabatan');
+Route::post('/jabatan/tambah_jabatan', 'App\Http\Controllers\InformasiController@PostTambahJabatan');
+Route::get('/hapus_jabatan/{id_jabatan}', 'App\Http\Controllers\InformasiController@HapusJabatan');
+
+Route::get('/divisi', 'App\Http\Controllers\InformasiController@ManajemenDivisi');
+Route::post('/divisi/tambah_divisi', 'App\Http\Controllers\InformasiController@PostTambahDivisi');
+Route::get('/hapus_divisi/{id_divisi}', 'App\Http\Controllers\InformasiController@HapusDivisi');
+
+Route::get('/lokasi', 'App\Http\Controllers\InformasiController@ManajemenLokasi');
+Route::post('/lokasi/tambah_lokasi', 'App\Http\Controllers\InformasiController@PostTambahLokasi');
+Route::get('/hapus_lokasi/{id_lokasi}', 'App\Http\Controllers\InformasiController@HapusLokasi');
+
+Route::get('/manajemen_sop', 'App\Http\Controllers\SOPController@ManajemenSOP');
+Route::post('/manajemen_sop/tambah_sop', 'App\Http\Controllers\SOPController@PostTambahSOP');
+Route::get('/detail_sop/{id_sop}', 'App\Http\Controllers\SOPController@DetailSOP');
+Route::post('/PostEditSOP', 'App\Http\Controllers\SOPController@PostEditSOP');
+Route::get('/hapus_sop/{id_sop}', 'App\Http\Controllers\SOPController@HapusSOP');
+
+Route::get('/sop', 'App\Http\Controllers\SOPController@SOP');
+Route::get('/lihat_sop/{id_sop}', 'App\Http\Controllers\SOPController@LihatSOP');
+
+Route::get('/manajemen_materi', 'App\Http\Controllers\MateriController@ManajemenMateri');
+Route::get('/tambah_materi', function () {
+    return view('tambah_materi');
+});
+Route::get('/tambah_materi', 'App\Http\Controllers\MateriController@TambahMateri');
+Route::post('/PostTambahMateri', 'App\Http\Controllers\MateriController@PostTambahMateri');
+Route::get('/detail_materi/{id_materi}', 'App\Http\Controllers\MateriController@DetailMateri');
+Route::post('/PostEditMateri', 'App\Http\Controllers\MateriController@PostEditMateri');
+Route::get('/hapus_materi/{id_materi}', 'App\Http\Controllers\MateriController@HapusMateri');
+
+Route::get('/materi', 'App\Http\Controllers\MateriController@Materi');
+Route::get('/lihat_materi/{id_materi}', 'App\Http\Controllers\MateriController@LihatMateri');
+
+Route::get('/edit_profil/{nik_akun}', 'App\Http\Controllers\AkunController@EditProfil');
+Route::post('/PostEditFotoProfil', 'App\Http\Controllers\AkunController@PostEditFotoProfil');
+Route::post('/PostEditKataSandi', 'App\Http\Controllers\AkunController@PostEditKataSandi');
