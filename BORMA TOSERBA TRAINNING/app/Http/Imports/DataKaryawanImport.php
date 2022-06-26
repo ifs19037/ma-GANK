@@ -38,8 +38,5 @@ class DataKaryawanImport implements ToModel, WithHeadingRow
             'alamat_ktp' => $row['alamat_ktp'], 
             'foto_karyawan' => "user.png", 
         ]);
-        
-        
-        
     }
 }

@@ -86,7 +86,6 @@ class KaryawanController extends Controller
         $jabatan = DB::table('jabatan')->orderBy('nama_jabatan', 'asc')->get();
         $divisi = DB::table('divisi')->orderBy('nama_divisi', 'asc')->get();
         $lokasi = DB::table('lokasi')->orderBy('nama_lokasi', 'asc')->get();
-
         
         return view('detail_karyawan')->with('data_karyawan', $data_karyawan)->with('jabatan', $jabatan)->with('divisi', $divisi)->with('lokasi', $lokasi);
     }

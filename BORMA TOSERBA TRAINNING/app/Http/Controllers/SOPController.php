@@ -13,8 +13,30 @@ class SOPController extends Controller
     public function ManajemenSOP()
     {
         $sop = DB::table('sop')->orderBy('id_sop', 'desc')->get();
+        
         return view('manajemen_sop')->with('sop', $sop);
     }
+
+    public function ManajemenSOPCari(Request $request)
+    {
+		$cari = $request->cari;
+        
+        $sop = DB::table('sop')->where('judul_sop','like',"%".$cari."%")->orderBy('id_sop', 'desc')->get();
+
+        return view('manajemen_sop')->with('sop', $sop);
+    }
+
+    // public function cari(Request $request)
+	// {
+	// 	$cari = $request->cari;
+
+	// 	$pengumuman = DB::table('pengumuman')->where('kategori_pengumuman','like',"%".$cari."%")
+    //     ->orwhere('judul_pengumuman','like',"%".$cari."%")->orwhere('isi_pengumuman','like',"%".$cari."%")
+    //     ->orwhere('tanggal','like',"%".$cari."%")
+    //     ->orderBy('id', 'desc')->get();
+ 
+	// 	return view('./daftar_pengumuman',['pengumuman' => $pengumuman]);
+	// }
 
     public function PostTambahSOP(Request $request)
     {
@@ -94,6 +116,16 @@ class SOPController extends Controller
     public function SOP()
     {
         $sop = DB::table('sop')->orderBy('id_sop', 'desc')->get();
+
+        return view('sop')->with('sop', $sop);
+    }
+
+    public function SOPCari(Request $request)
+    {
+		$cari = $request->cari;
+        
+        $sop = DB::table('sop')->where('judul_sop','like',"%".$cari."%")->orderBy('id_sop', 'desc')->get();
+
         return view('sop')->with('sop', $sop);
     }
 

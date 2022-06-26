@@ -25,10 +25,10 @@
     <div class="container-fluid page__container">
         <div class="card">
             <div class="card-body">
-                <form action="#" method="GET">
+                <form method="GET">
                     <div class="search-form search-form--light mb-3">
-                        <input type="text" class="form-control search" placeholder="Search">
-                        <button class="btn" type="button" role="button"><i class="material-icons">search</i></button>
+                        <input type="text" name="cari" class="form-control search" placeholder="Cari..." value="{{ old('cari') }}">
+                        <button class="btn" type="submit" role="button"><i class="material-icons">search</i></button>
                     </div>
                 </form>
                 <div class="row">
@@ -43,6 +43,10 @@
                                     <div class="flex" style="min-width: 200px;">
                                         <h4 class="card-title mb-1"><a href="./detail_materi/{{$materi->id_materi}}">{{$materi->judul_materi}}</a></h4>
                                         <p class="text-black-70">{{$materi->keterangan_singkat}}</p>
+                                        <div class="d-flex align-items-center py-1">
+                                            <span class="badge badge-dark ml-2">{{$materi->divisi}}</span>
+                                        </div>
+
                                     </div>
                                 </div>
 

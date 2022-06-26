@@ -101,7 +101,7 @@
                 </ul>
                 <div class="tab-content card-body">
                     <div class="tab-pane active" id="first">
-                        <form action="../PostEditFotoProfil" class="form-horizontal" method="post">
+                        <form action="../PostEditFotoProfil" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group row">
                                 <label for="avatar" class="col-sm-3 col-form-label form-label">Foto</label>
@@ -114,9 +114,9 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="custom-file" style="width: auto;">
-                                                <!--Jika Tidak Ada Foto-->
+                                                <!--Foto Lama-->
                                                 <input type="text" name="foto_karyawan_lama" class="form-control" value="{{$profil->foto_karyawan}}" required hidden>
-                                                <!--Jika Ada Foto-->
+                                                <!--Foto Baru-->
                                                 <input type="file" name="foto_karyawan" id="foto_karyawan" class="custom-file-input" accept="image/*">
                                                 <label for="foto_karyawan" class="custom-file-label">{{$profil->foto_karyawan}}</label>
                                             </div>

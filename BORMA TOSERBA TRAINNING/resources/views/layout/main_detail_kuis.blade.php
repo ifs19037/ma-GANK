@@ -1,6 +1,16 @@
 @if(Session::get('level'))
 <html>
     <head>
+        <style>
+            .bg-navbar-admin-color{
+                background-color: #5EB5F9 !important;
+                color: #ffffff !important;
+            }
+            .bg-navbar-karyawan-color{
+                background-color: #F3DB00 !important;
+                color: #ffffff !important;
+            }
+        </style>
         <link rel="icon" href="{{ URL::asset('asset/image/logo/logo_prama.png') }}">
         <title>@yield('title')</title>
 
@@ -38,6 +48,9 @@
 
         <!-- Touchspin -->
         <link type="text/css" href="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/bootstrap-touchspin.css') }}" rel="stylesheet">
+
+        <!-- Vendor CSS -->
+        <link rel="stylesheet" href="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/nestable.css') }}">
     </head>
 
     <body class=" layout-fluid"> 
@@ -65,8 +78,8 @@
                 <div class="mdk-header__content">
 
                     <!-- Navbar -->
-                    <nav id="default-navbar"
-                        class="navbar navbar-expand navbar-dark bg-primary m-0">
+                    <nav
+                        class="navbar navbar-expand navbar-dark bg-navbar-admin-color m-0">
                         <div class="container-fluid">
                             <!-- Toggle sidebar -->
                             <button class="navbar-toggler d-block"
@@ -234,6 +247,7 @@
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
                 <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
+                    @yield('container')
                     <div class="mdk-drawer js-mdk-drawer"
                         id="default-drawer">
                         <div class="mdk-drawer__content ">
@@ -329,10 +343,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    @yield('container')
-                    
+                    </div>                    
                 </div>
 
                 <!-- App Settings FAB -->
@@ -341,6 +352,208 @@
                 </div>
             </div>
         </div>
+
+        @if($kuis->tipe_kuis=="isian")
+        <div class="modal fade" id="TambahSoal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <h4 class="modal-title text-white">Tambah Soal Isian</h4>
+                        <button type="button"
+                                class="close text-white"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../detail_kuis/tambah_soal_isian" method="post" enctype="multipart/form-data">
+                        @csrf
+                            <div class="form-group row" hidden>
+                                <div class="col-md-9">
+                                    <input name="id_kuis" type="text" class="form-control" value="{{$kuis->id_kuis}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Soal</label>
+                                <div class="col-md-9">
+                                    <textarea name="soal_isian" placeholder="" style="height: 150px; width:100%" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-3">
+                                    <button type="submit" class="btn btn-success">Tambah</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="ImportSoal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <h4 class="modal-title text-white">Import Excel</h4>
+                        <button type="button"
+                                class="close text-white"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../tambah_soal/import_excel_soal_isian/{{$kuis->id_kuis}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilih File Excel</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="file_excel_soal_isian" type="file" id="file_excel" class="custom-file-input" accept=".xlsx" required>
+                                        <label for="file_excel" class="custom-file-label">Pilih FIle</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-3">
+                                    <button type="submit" class="btn btn-success">Import</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @elseif($kuis->tipe_kuis=="pilihan berganda")
+        <div class="modal fade" id="TambahSoal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <h4 class="modal-title text-white">Tambah Soal Pilihan Berganda</h4>
+                        <button type="button"
+                                class="close text-white"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../detail_kuis/tambah_soal_pilihan_berganda" method="post" enctype="multipart/form-data">
+                        @csrf
+                            <div class="form-group row" hidden>
+                                <div class="col-md-9">
+                                    <input name="id_kuis" type="text" class="form-control" value="{{$kuis->id_kuis}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Soal</label>
+                                <div class="col-md-9">
+                                    <textarea name="soal_pilihan_berganda" placeholder="" style="height: 150px; width:100%" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilihan A</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="pilihan_a" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilihan B</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="pilihan_b" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilihan C</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="pilihan_c" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilihan D</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="pilihan_d" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilihan E</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="pilihan_e" type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Jawaban</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <select name="jawaban_soal_pilihan_berganda"class="custom-select form-control" required>
+                                            <option selected disabled value="">Pilih Jawaban</option>
+                                            <option value="a">A</option>
+                                            <option value="b">B</option>
+                                            <option value="c">C</option>
+                                            <option value="d">D</option>
+                                            <option value="e">E</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-3">
+                                    <button type="submit" class="btn btn-success">Tambah</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="ImportSoal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                        <h4 class="modal-title text-white">Import Excel</h4>
+                        <button type="button"
+                                class="close text-white"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../tambah_soal/import_excel_soal_pilihan_berganda/{{$kuis->id_kuis}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                            <div class="form-group row">
+                                <label for="qtitle" class="col-form-label form-label col-md-3">Pilih File Excel</label>
+                                <div class="col-md-9">
+                                    <div class="custom-file">
+                                        <input name="file_excel_soal_pilihan_berganda" type="file" id="file_excel" class="custom-file-input" accept=".xlsx" required>
+                                        <label for="file_excel" class="custom-file-label">Pilih FIle</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-3">
+                                    <button type="submit" class="btn btn-success">Import</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
 
         @elseif(Session::get('level')=="2")
         
@@ -381,7 +594,7 @@
 
         <!-- Flatpickr -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/flatpickr/flatpickr.min.js') }}"></script>
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/') }}assets/js/flatpickr.js"></script>
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/flatpickr.js') }}"></script>
 
         <!-- jQuery Mask Plugin -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.mask.min.js') }}"></script>
@@ -397,6 +610,14 @@
         <!-- Tables -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/toggle-check-all.js') }}"></script>
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/check-selected-row.js') }}"></script>
+
+        <!-- Vendor JS -->
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.nestable.js') }}"></script>
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.bootstrap-touchspin.js') }}"></script>
+
+        <!-- Initialize -->
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/nestable.js') }}"></script>
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/touchspin.js') }}"></script>
 
     </body>
 </html>

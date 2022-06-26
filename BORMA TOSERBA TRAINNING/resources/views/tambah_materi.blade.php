@@ -15,7 +15,7 @@
                 <h4 class="card-title">Materi</h4>
             </div>
             <div class="card-body">
-                <form action="./PostTambahMateri" method="post">
+                <form action="./PostTambahMateri" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label form-label">Judul Materi</label>

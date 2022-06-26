@@ -13,6 +13,16 @@ class MateriController extends Controller
     public function ManajemenMateri()
     {
         $materi = DB::table('materi')->orderBy('id_materi', 'desc')->get();
+        
+        return view('manajemen_materi')->with('materi', $materi);
+    }
+
+    public function ManajemenMateriCari(Request $request)
+    {
+		$cari = $request->cari;
+        
+        $materi = DB::table('materi')->where('judul_materi','like',"%".$cari."%")->orderBy('id_materi', 'desc')->get();
+
         return view('manajemen_materi')->with('materi', $materi);
     }
 
@@ -32,14 +42,14 @@ class MateriController extends Controller
         $divisi = $request -> divisi;
         $kode_link_video = $request -> kode_link_video;
         $isi_materi = $request -> isi_materi;
-        
+
         if(empty($foto_materi)){
             $nama_foto = $foto_kosong;
         }
 
         else{
             $nama_foto = time().'_'.$foto_materi->getClientOriginalName();
-            $tujuan_upload = '../asset/u_file/foto_materi';
+            $tujuan_upload = './asset/u_file/foto_materi';
             $foto_materi->move($tujuan_upload,$nama_foto);
         }
 
@@ -95,6 +105,7 @@ class MateriController extends Controller
             'judul_materi' => $judul_materi,
             'keterangan_singkat' => $keterangan_singkat,
             'foto_materi' => $nama_foto,
+            'divisi' => $divisi,
             'kode_link_video' => $kode_link_video,
             'isi_materi' => $isi_materi,
         ]);
@@ -117,6 +128,18 @@ class MateriController extends Controller
         $divisi = Session::get('divisi');
 
         $materi = DB::table('materi')->where('divisi', $divisi)->orderBy('id_materi', 'desc')->get();
+
+        return view('materi')->with('materi', $materi);
+    }
+
+    public function MateriCari(Request $request)
+    {
+        $divisi = Session::get('divisi');
+        
+		$cari = $request->cari;
+        
+        $materi = DB::table('materi')->where('divisi', $divisi)->where('judul_materi','like',"%".$cari."%")->orderBy('id_materi', 'desc')->get();
+
         return view('materi')->with('materi', $materi);
     }
 

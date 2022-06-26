@@ -1,6 +1,16 @@
 @if(Session::get('level'))
 <html>
     <head>
+        <style>
+            .bg-navbar-admin-color{
+                background-color: #5EB5F9 !important;
+                color: #ffffff !important;
+            }
+            .bg-navbar-karyawan-color{
+                background-color: #F3DB00 !important;
+                color: #ffffff !important;
+            }
+        </style>
         <link rel="icon" href="{{ URL::asset('asset/image/logo/logo_prama.png') }}">
         <title>@yield('title')</title>
 
@@ -65,8 +75,8 @@
                 <div class="mdk-header__content">
 
                     <!-- Navbar -->
-                    <nav id="default-navbar"
-                        class="navbar navbar-expand navbar-dark bg-primary m-0">
+                    <nav
+                        class="navbar navbar-expand navbar-dark bg-navbar-karyawan-color m-0">
                         <div class="container-fluid">
                             <!-- Toggle sidebar -->
                             <button class="navbar-toggler d-block"
@@ -237,6 +247,7 @@
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
                 <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
+                    @yield('container')
                     <div class="mdk-drawer js-mdk-drawer"
                         id="default-drawer">
                         <div class="mdk-drawer__content ">
@@ -281,10 +292,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    @yield('container')
-                    
+                    </div>                   
                 </div>
 
                 <!-- App Settings FAB -->
@@ -396,7 +404,7 @@
 
         <!-- Flatpickr -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/flatpickr/flatpickr.min.js') }}"></script>
-        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/') }}assets/js/flatpickr.js"></script>
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/flatpickr.js') }}"></script>
 
         <!-- jQuery Mask Plugin -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.mask.min.js') }}"></script>

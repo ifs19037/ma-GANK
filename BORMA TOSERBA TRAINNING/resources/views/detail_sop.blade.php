@@ -31,7 +31,7 @@
             
             @foreach($sop as $sop)
             <div class="card-body">
-                <form action="../PostEditSOP" method="post">
+                <form action="../PostEditSOP" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group row" hidden>
                         <div class="col-sm-9">
@@ -74,7 +74,7 @@
 
         <div class="card">
             <div class="card-body">
-                    <iframe src="../asset/u_file/file_sop/{{$sop->file_sop}}#toolbar=0" width="100%" height="550px"></iframe>
+                <iframe src="../asset/u_file/file_sop/{{$sop->file_sop}}#toolbar=0" width="100%" height="550px"></iframe>
             </div>
         </div>
 

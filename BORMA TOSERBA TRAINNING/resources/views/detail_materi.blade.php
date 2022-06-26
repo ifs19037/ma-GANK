@@ -18,7 +18,7 @@
             
             @foreach($materi as $materi)
             <div class="card-body">
-                <form action="../PostEditMateri" method="post">
+                <form action="../PostEditMateri" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group row" hidden>
                         <div class="col-sm-9">
