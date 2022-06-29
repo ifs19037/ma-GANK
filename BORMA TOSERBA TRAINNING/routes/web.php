@@ -102,3 +102,5 @@ Route::get('/lihat_materi/{id_materi}', 'App\Http\Controllers\MateriController@L
 Route::get('/edit_profil/{nik_akun}', 'App\Http\Controllers\AkunController@EditProfil');
 Route::post('/PostEditFotoProfil', 'App\Http\Controllers\AkunController@PostEditFotoProfil');
 Route::post('/PostEditKataSandi', 'App\Http\Controllers\AkunController@PostEditKataSandi');
+
+Route::get('/ulang_tahun_bulan_ini', 'App\Http\Controllers\KaryawanController@UlangTahunBulanIni');
