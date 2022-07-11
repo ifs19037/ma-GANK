@@ -1,6 +1,8 @@
 @if(Session::get('level'))
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset=UTF-8>
         <style>
             .bg-navbar-admin-color{
                 background-color: #5EB5F9 !important;
@@ -9,6 +11,9 @@
             .bg-navbar-karyawan-color{
                 background-color: #F3DB00 !important;
                 color: #ffffff !important;
+            }
+            .tox-statusbar{
+                visibility: hidden;
             }
         </style>
         <link rel="icon" href="{{ URL::asset('asset/image/logo/logo_prama.png') }}">
@@ -619,6 +624,9 @@
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/nestable.js') }}"></script>
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/touchspin.js') }}"></script>
 
+        <!-- TinyMCE -->
+        <script src="{{ URL::asset('asset/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>
     </body>
 </html>
    

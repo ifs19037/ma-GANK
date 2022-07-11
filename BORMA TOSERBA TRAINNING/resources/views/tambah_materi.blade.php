@@ -37,7 +37,24 @@
                                 <input type="text" name="foto_kosong" class="form-control" value="empty.png" required hidden>
                                 <!--Jika Ada Foto-->
                                 <input name="foto_materi" type="file" id="foto_materi" class="custom-file-input" accept="image/*">
-                                <label for="foto_materi" class="custom-file-label">Pilih Foto</label>
+                                <label for="foto_materi" class="custom-file-label fileName">Pilih Foto</label>
+                                <script>
+                                    $('input[type=file]').change(function(e) {
+                                    $in = $(this);
+                                    $in.next().html($in.val());
+                                    
+                                });
+
+                                $('.uploadButton').click(function() {
+                                    var fileName = $("#fileUpload").val();
+                                    if (fileName) {
+                                        alert(fileName + " can be uploaded.");
+                                    }
+                                    else {
+                                        alert("Please select a file to upload");
+                                    }
+                                });
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -60,7 +77,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label form-label">Isi Materi</label>
-                        <div class="col-sm-9"> 
+                        <div class="col-sm-9">
                             <textarea name="isi_materi" placeholder="" style="height: 250px; width:100%" required></textarea>
                         </div>
                     </div>

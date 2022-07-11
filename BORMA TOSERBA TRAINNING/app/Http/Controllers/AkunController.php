@@ -66,7 +66,7 @@ class AkunController extends Controller
 
     public function EditProfil($nik_akun)
     {
-        $profil = DB::table('akun')->where('nik_akun', $nik_akun)->join('data_karyawan', 'akun.nik_karyawan', '=', 'data_karyawan.nik_karyawan')->get();;
+        $profil = DB::table('akun')->where('nik_akun', $nik_akun)->join('data_karyawan', 'akun.nik_karyawan', '=', 'data_karyawan.nik_karyawan')->get();
 
         return view('edit_profil')->with('profil', $profil);
     }

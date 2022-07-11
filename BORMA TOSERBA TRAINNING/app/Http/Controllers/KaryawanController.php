@@ -133,7 +133,21 @@ class KaryawanController extends Controller
     public function UlangTahunBulanIni()
     {
         date_default_timezone_set('Asia/Jakarta');
+
         $ulang_tahun_bulan_ini = DB::table('data_karyawan')->where((DB::raw('month(tanggal_lahir)')), date('m'))->get();
+
+        return view('ulang_tahun_bulan_ini')->with('ulang_tahun_bulan_ini', $ulang_tahun_bulan_ini);
+    }
+
+    public function UlangTahunBulanIniCari(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+
+        $cari = $request->cari;
+
+        $ulang_tahun_bulan_ini = DB::table('data_karyawan')->where((DB::raw('month(tanggal_lahir)')), date('m'))
+        ->where('nama_karyawan','like',"%".$cari."%")->get();
+
         return view('ulang_tahun_bulan_ini')->with('ulang_tahun_bulan_ini', $ulang_tahun_bulan_ini);
     }
 }

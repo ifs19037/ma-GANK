@@ -134,6 +134,11 @@
                                     <a href="../edit_soal_isian/{{$soal->id_soal_isian}}" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
                                 </div>
                             </div>
+                            <div class="media-right text-right">
+                                <div style="width:30px">
+                                    <a href="../detail_kuis/{{$kuis->id_kuis}}/hapus_soal_isian/{{$soal->id_soal_isian}}" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     @endforeach
@@ -148,8 +153,13 @@
                                 {{$soal->soal_pilihan_berganda}}
                             </div>
                             <div class="media-right text-right">
-                                <div style="width:100px">
+                                <div style="width:30px">
                                     <a href="../edit_soal_pilihan_berganda/{{$soal->id_soal_pilihan_berganda}}" class="btn btn-primary btn-sm"><i class="material-icons">edit</i></a>
+                                </div>
+                            </div>
+                            <div class="media-right text-right">
+                                <div style="width:30px">
+                                    <a href="../detail_kuis/{{$kuis->id_kuis}}/hapus_soal_pilihan_berganda/{{$soal->id_soal_pilihan_berganda}}" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></a>
                                 </div>
                             </div>
                         </div>

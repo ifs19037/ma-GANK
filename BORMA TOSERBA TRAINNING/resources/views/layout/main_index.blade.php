@@ -244,20 +244,8 @@
 
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
-
                 <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
-                    <div class="mdk-drawer-layout__content page ">
-
-                        <div class="container-fluid page__container">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
-                            <h1 class="h2">Dashboard</h1>
-                            
-                        </div>
-
-                    </div>
-
+                    @yield('container')
                     <div class="mdk-drawer js-mdk-drawer"
                         id="default-drawer">
                         <div class="mdk-drawer__content ">
@@ -559,20 +547,8 @@
 
             <!-- Header Layout Content -->
             <div class="mdk-header-layout__content">
-
                 <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
-                    <div class="mdk-drawer-layout__content page ">
-
-                        <div class="container-fluid page__container">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
-                            <h1 class="h2">Dashboard</h1>
-                            
-                        </div>
-
-                    </div>
-
+                    @yield('container')
                     <div class="mdk-drawer js-mdk-drawer"
                         id="default-drawer">
                         <div class="mdk-drawer__content ">
@@ -581,7 +557,7 @@
                                     <div class="sidebar-heading">MENU</div>
                                     <ul class="sidebar-menu sm-active-button-bg">
                                         <li class="sidebar-menu-item active">
-                                            <a class="sidebar-menu-button" href="#">
+                                            <a class="sidebar-menu-button" href="./">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i> Dashboard
                                             </a>
                                         </li>
@@ -617,7 +593,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
 
                 <!-- App Settings FAB -->
@@ -631,8 +607,6 @@
         <?php return redirect('./') ?>
         
         @endif
-
-        @yield('container')
 
         <!-- jQuery -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.min.js') }}"></script>
@@ -729,6 +703,11 @@
     <body>
     <div class="d-flex align-items-center" style="min-height: 100vh; background-color:rgba(255, 255, 255, 0.5)">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
+            @if(Session::has('alert'))
+                <div class="alert alert-danger" role="alert">
+                    <strong>!!!</strong> {{Session::get('alert')}}
+                </div>
+            @endif
                 <div class="card navbar-shadow" style="background-color:rgba(255, 255, 255, 0.5)">
                     <div class="card-header text-center" style="background-color:rgba(255, 255, 255, 0.5)">
                         <img src="{{ URL::asset('asset/image/logo/logo_prama.png') }}" width="80%">
@@ -739,7 +718,7 @@
                             <div class="form-group">
                                 <label class="form-label">NIP</label>
                                 <div class="input-group input-group-merge">
-                                    <input name="nik_akun" id="nik_akun" type="text" required class="form-control form-control-prepended" data-mask="###" data-mask-reverse="true">
+                                    <input name="nik_akun" id="nik_akun" type="text" required class="form-control form-control-prepended" data-mask="###" maxlength="10" data-mask-reverse="true">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <span class="far fa-key"></span>

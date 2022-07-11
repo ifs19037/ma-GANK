@@ -75,7 +75,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label form-label">Tanggal Lahir</label>
                         <div class="col-sm-9">
-                            <input name="tanggal_lahir" type="date" class="form-control" required>
+                            <input name="tanggal_lahir" type="date" class="form-control" max="<?php echo date('Y-m-d')?>" required>
                         </div>
                     </div>
                     <div class="form-group row">

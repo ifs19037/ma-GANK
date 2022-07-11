@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="card-body" style="text-align: justify;">
+            <div class="card-body">
                 <p><?php echo $materi->isi_materi;?></p>
             </div>
         </div>

@@ -420,6 +420,16 @@
                                         <input name="durasi_pengerjaan" type="text" class="form-control" maxlength="3" style="max-width:50px" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
+                                <!-- <div class="col-md-2">
+                                    <div class="custom-file">
+                                        <input name="durasi_pengerjaan" type="text" class="form-control" maxlength="3" onkeypress="return hanyaAngka(event)" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="custom-file">
+                                        <text class="form-control" style="border:0px solid; box-shadow: none;">Jam<text>
+                                    </div>
+                                </div> -->
                             </div>
                             <script>
                                 function hanyaAngka(event) {

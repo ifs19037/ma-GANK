@@ -1,6 +1,8 @@
 @if(Session::get('level'))
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset=UTF-8>
         <style>
             .bg-navbar-admin-color{
                 background-color: #5EB5F9 !important;
@@ -366,6 +368,9 @@
         <!-- Init -->
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/countdown.js') }}"></script>
 
+        <!-- TinyMCE -->
+        <script src="{{ URL::asset('asset/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>
     </body>
 </html>
    

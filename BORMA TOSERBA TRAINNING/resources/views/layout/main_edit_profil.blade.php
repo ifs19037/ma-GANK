@@ -76,7 +76,7 @@
 
                     <!-- Navbar -->
                     <nav
-                        class="navbar navbar-expand navbar-dark bg-navbar-admin-color m-0">
+                        class="navbar navbar-expand navbar-dark bg-navbar-karyawan-color m-0">
                         <div class="container-fluid">
                             <!-- Toggle sidebar -->
                             <button class="navbar-toggler d-block"

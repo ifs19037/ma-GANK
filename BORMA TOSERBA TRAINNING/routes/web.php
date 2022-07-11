@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+Route::get('/', 'App\Http\Controllers\IndexController@Index');
 
 Route::post('/PostLogin', 'App\Http\Controllers\LoginController@PostLogin');
 
@@ -48,6 +49,9 @@ Route::get('/kuis', 'App\Http\Controllers\KuisController@Kuis');
 Route::get('/kuis', 'App\Http\Controllers\KuisController@KuisCari');
 Route::get('/lihat_kuis/{id_kuis}', 'App\Http\Controllers\KuisController@LihatKuis');
 
+Route::get('/hapus_kuis_isian/{id_kuis}', 'App\Http\Controllers\KuisController@HapusKuisIsian');
+Route::get('/hapus_kuis_pilihan_berganda/{id_kuis}', 'App\Http\Controllers\KuisController@HapusKuisPilihanBerganda');
+
 Route::post('/tambah_soal/import_excel_soal_isian/{id_kuis}', 'App\Http\Controllers\KuisController@TambahSoalIsianImportExcel');
 Route::post('/tambah_soal/import_excel_soal_pilihan_berganda/{id_kuis}', 'App\Http\Controllers\KuisController@TambahSoalPilihanBergandaImportExcel');
 
@@ -59,7 +63,13 @@ Route::post('/edit_soal/PostEditSoalPilihanBerganda', 'App\Http\Controllers\Kuis
 Route::get('/edit_soal_isian/{id_soal}', 'App\Http\Controllers\KuisController@EditSoalIsian');
 Route::get('/edit_soal_pilihan_berganda/{id_soal}', 'App\Http\Controllers\KuisController@EditSoalPilihanBerganda');
 
+Route::get('/detail_kuis/{id_kuis}/hapus_soal_isian/{id_soal_isian}', 'App\Http\Controllers\KuisController@HapusSoalIsian');
+Route::get('/detail_kuis/{id_kuis}/hapus_soal_pilihan_berganda/{id_soal_pilihan_berganda}', 'App\Http\Controllers\KuisController@HapusSoalPilihanBerganda');
+
+Route::get('/memulai_kuis/{id_kuis}', 'App\Http\Controllers\KuisController@MemulaiKuis');
 Route::get('/mulai_kuis/{id_kuis}', 'App\Http\Controllers\KuisController@MulaiKuis');
+
+Route::get('/jawab_pilihan_berganda/{id_soal}', 'App\Http\Controllers\KuisController@JawabPilihanBerganda');
 
 Route::get('/jabatan', 'App\Http\Controllers\InformasiController@ManajemenJabatan');
 Route::post('/jabatan/tambah_jabatan', 'App\Http\Controllers\InformasiController@PostTambahJabatan');
@@ -72,6 +82,20 @@ Route::get('/hapus_divisi/{id_divisi}', 'App\Http\Controllers\InformasiControlle
 Route::get('/lokasi', 'App\Http\Controllers\InformasiController@ManajemenLokasi');
 Route::post('/lokasi/tambah_lokasi', 'App\Http\Controllers\InformasiController@PostTambahLokasi');
 Route::get('/hapus_lokasi/{id_lokasi}', 'App\Http\Controllers\InformasiController@HapusLokasi');
+
+Route::get('/manajemen_pengumuman', 'App\Http\Controllers\InformasiController@ManajemenPengumuman');
+Route::get('/manajemen_pengumuman', 'App\Http\Controllers\InformasiController@ManajemenPengumumanCari');
+Route::get('/tambah_pengumuman', function () {
+    return view('tambah_pengumuman');
+});
+Route::post('/PostTambahPengumuman', 'App\Http\Controllers\InformasiController@PostTambahPengumuman');
+Route::get('/detail_pengumuman/{id_pengumuman}', 'App\Http\Controllers\InformasiController@DetailPengumuman');
+Route::post('/PostEditPengumuman', 'App\Http\Controllers\InformasiController@PostEditPengumuman');
+Route::get('/hapus_pengumuman/{id_pengumuman}', 'App\Http\Controllers\InformasiController@HapusPengumuman');
+
+Route::get('/pengumuman', 'App\Http\Controllers\InformasiController@Pengumuman');
+Route::get('/pengumuman', 'App\Http\Controllers\InformasiController@PengumumanCari');
+Route::get('/lihat_pengumuman/{id_pengumuman}', 'App\Http\Controllers\InformasiController@LihatPengumuman');
 
 Route::get('/manajemen_sop', 'App\Http\Controllers\SOPController@ManajemenSOP');
 Route::get('/manajemen_sop', 'App\Http\Controllers\SOPController@ManajemenSOPCari');
@@ -86,9 +110,6 @@ Route::get('/lihat_sop/{id_sop}', 'App\Http\Controllers\SOPController@LihatSOP')
 
 Route::get('/manajemen_materi', 'App\Http\Controllers\MateriController@ManajemenMateri');
 Route::get('/manajemen_materi', 'App\Http\Controllers\MateriController@ManajemenMateriCari');
-Route::get('/tambah_materi', function () {
-    return view('tambah_materi');
-});
 Route::get('/tambah_materi', 'App\Http\Controllers\MateriController@TambahMateri');
 Route::post('/PostTambahMateri', 'App\Http\Controllers\MateriController@PostTambahMateri');
 Route::get('/detail_materi/{id_materi}', 'App\Http\Controllers\MateriController@DetailMateri');
@@ -104,3 +125,4 @@ Route::post('/PostEditFotoProfil', 'App\Http\Controllers\AkunController@PostEdit
 Route::post('/PostEditKataSandi', 'App\Http\Controllers\AkunController@PostEditKataSandi');
 
 Route::get('/ulang_tahun_bulan_ini', 'App\Http\Controllers\KaryawanController@UlangTahunBulanIni');
+Route::get('/ulang_tahun_bulan_ini', 'App\Http\Controllers\KaryawanController@UlangTahunBulanIniCari');

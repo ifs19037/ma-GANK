@@ -64,7 +64,17 @@
                         function MulaiKuis() {
                             var txt;
                             if (confirm("Mulai Kuis?")){
-                                window.location.href = "../mulai_kuis/{{$kuis->id_kuis}}";
+                                <?php
+                                    // session_start();
+
+                                    // $_SESSION["waktu_mulai"] = date("Y-m-D h:i:sa");
+                                ?>
+
+                                // sessionStorage.setItem("waktu_mulai_kuis", new Date().getTime());
+                                // Session["waktu_mulai"] = new Date().getTime();
+                                // var waktu_mulai_kuis = new Date().getTime();
+                                // var countDownDate = new Date(waktu_mulai_kuis + {{$kuis->durasi_pengerjaan}} * 60 * 60 * 1000).getTime();
+                                window.location.href = "../memulai_kuis/{{$kuis->id_kuis}}";
                             }
                             else{
                                 

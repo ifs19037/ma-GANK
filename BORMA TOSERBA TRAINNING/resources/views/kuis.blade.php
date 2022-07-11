@@ -47,10 +47,10 @@
                                                     <small class="text-muted mr-2"> | </small>
                                                     <small class="text-black-50" style="text-transform: uppercase;"> {{$kuis->tipe_kuis}}</small>
                                                 </div>
-                                                <div class="d-flex align-items-center py-1">
-                                                    
-                                                </div>
                                                 
+                                                <div class="d-flex align-items-center py-1">
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>

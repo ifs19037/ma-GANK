@@ -25,6 +25,8 @@ class LoginController extends Controller
                 return redirect('./');
             }
         }
+
+        
         $data_2 = DB::table('akun')->where('nik_akun',$nik_akun)->where('password',$password)
         ->join('data_karyawan', 'akun.nik_karyawan', '=', 'data_karyawan.nik_karyawan')->first();
         if($data_2){
@@ -38,17 +40,8 @@ class LoginController extends Controller
                 return redirect('./');
             }
         }
-        else if(empty($nik_akun) && empty($password)){
-            return redirect('./')->with('alert1','ID Karyawan tidak boleh kosong.')->with('alert2','Kata Sandi tidak boleh kosong.');
-        }
-        else if(empty($nik_akun)){
-            return redirect('./')->with('alert1','ID Karyawan tidak boleh kosong.');
-        }
-        else if(empty($password)){
-            return redirect('./')->with('alert2','Kata Sandi tidak boleh kosong.');
-        }
         else{
-            return redirect('./')->with('alert3','ID Karyawan atau Kata Sandi salah !');
+            return redirect('./')->with('alert','NIP atau Kata Sandi salah.');
         }
     }
 }
