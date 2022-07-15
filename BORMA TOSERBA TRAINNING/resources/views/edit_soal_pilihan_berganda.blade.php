@@ -36,7 +36,7 @@
                         <div class="form-group row">
                             <label for="qtitle" class="col-form-label form-label col-md-3">Soal</label>
                             <div class="col-md-9">
-                                <textarea name="soal_pilihan_berganda" placeholder="" style="height: 150px; width:100%" required>{{$soal->soal_pilihan_berganda}}</textarea>
+                                <textarea name="soal_pilihan_berganda" placeholder="Soal Pilihan Berganda..." style="height: 150px; width:100%" required>{{$soal->soal_pilihan_berganda}}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">

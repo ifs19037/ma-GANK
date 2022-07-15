@@ -100,17 +100,37 @@ class AkunController extends Controller
         $nik_akun = Session::get('nik_akun');
 
         $kata_sandi_lama = $request -> kata_sandi_lama;
+        $cek_kata_sandi_lama = DB::table('akun')->where('password', $kata_sandi_lama)->where('nik_akun', $nik_akun)->first();
         $kata_sandi_baru = $request -> kata_sandi_baru;
-        $konfirmasi_kata_sandi = $request -> konfirmasi_kata_sandi;
+        $konfirmasi_kata_sandi_baru = $request -> konfirmasi_kata_sandi_baru;
 
-        if($konfirmasi_kata_sandi==$kata_sandi_baru){
+        if($kata_sandi_lama && $konfirmasi_kata_sandi_baru==$kata_sandi_baru){
             DB::table('akun')->where('nik_akun', $nik_akun)->update([
                 'password' => $kata_sandi_baru,
             ]);
+            
+            return redirect("./edit_profil/$nik_akun")->with('alert_1','Ganti kata sandi berhasil.');
         }
 
+        else if(!$cek_kata_sandi_lama && $konfirmasi_kata_sandi_baru==$kata_sandi_baru){
+            
+            return redirect("./edit_profil/$nik_akun")->with('alert_2','Kata sandi lama anda salah.');
+        }
 
-        return redirect("./edit_profil/$nik_akun");
+        else if($cek_kata_sandi_lama && $konfirmasi_kata_sandi_baru!=$kata_sandi_baru){
+            
+            return redirect("./edit_profil/$nik_akun")->with('alert_2','Konfirmasi kata sandi baru anda salah.');
+        }
+        
+        else if(!$cek_kata_sandi_lama && $konfirmasi_kata_sandi_baru!=$kata_sandi_baru){
+            
+            return redirect("./edit_profil/$nik_akun")->with('alert_3','Kata sandi lama dan konfirmasi kata sandi baru anda salah.');
+        }
+        
+        else{
+            
+            return redirect("./edit_profil/$nik_akun")->with('alert_3','Cek Kembali.');
+        }
     }
 
 }

@@ -13,7 +13,6 @@
 
 @foreach($kuis as $kuis)
     @if($kuis->tipe_kuis=="isian")
-        @foreach($soal_isian as $soal)
         <div class="mdk-drawer-layout__content page ">
             <div class="container-fluid page__container">
                 <ol class="breadcrumb">
@@ -23,12 +22,6 @@
                     <li class="breadcrumb-item active">{{$kuis->judul_kuis}}</li>
                 </ol>
                 <div class="card-group">
-                    @foreach($mulai_kuis as $mulai_kuis)
-                        <?php
-                            $waktu_selesai = $mulai_kuis->waktu_selesai
-                            // $sisa_waktu = $mulai_kuis->waktu_selesai - date("Y-m-d H:i:s");
-                        ?>
-                    @endforeach
                     <script>
                         <?php date_default_timezone_set('Asia/Jakarta'); ?>
                         // Update the count down every 1 second
@@ -76,82 +69,41 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="media align-items-center">
-                            <!-- <div class="media-left">
-                                <h4 class="mb-0"><strong>{{$loop->iteration}}.</strong></h4>
-                            </div> -->
-                            <div class="media-body">
-                                <h4 class="card-title">
-                                    {{$soal->soal_isian}}
-                                </h4>
+                <form action="../jawab_isian" method="post" enctype="multipart/form-data">
+                @csrf
+                    @foreach($soal_isian as $soal)
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="media align-items-center">
+                                <div class="media-left">
+                                    <h4 class="mb-0"><strong>{{$loop->iteration}}.</strong></h4>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="card-title">
+                                        {{$soal->soal_isian}}
+                                    </h4>
+                                </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <textarea name="jawaban_soal_isian" placeholder="Jawaban..." style="height: 250px; width:100%" required><a></a></textarea>
+                        </div>
+                        <div class="card-footer">
+                            
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <textarea name="jawaban_soal_isian" placeholder="" style="height: 250px; width:100%" required></textarea>
+                    @endforeach
+                    <div class="card">
+                        <div class="card-footer">
+                            <!-- <a onclick="submit()" class="btn btn-success float-right">Selesai</a> -->
+                            <button type="submit" class="btn btn-success float-right">Selesai</button>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <!-- <a href="#"
-                            class="btn btn-white">Skip</a>
-                        <a href="#"
-                            class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a> -->
-                            <center>{{$soal_isian->links()}}</center>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="mdk-drawer js-mdk-drawer"
-                data-align="end">
-            <div class="mdk-drawer__content ">
-                <div class="sidebar sidebar-right sidebar-light bg-white o-hidden"
-                        data-perfect-scrollbar>
-                    <div class="sidebar-p-y">
-                    <script>
-                        // Check browser support
-                        // if (typeof(Storage) !== "undefined") {
-                        // // Store
-                        // localStorage.setItem("waktu", "{{$kuis->durasi_pengerjaan}}");
-                        // // Retrieve
-                        // document.getElementById("waktu").innerHTML = localStorage.getItem("waktu");
-                        // } else {
-                        // document.getElementById("waktu").innerHTML = "Sorry, your browser does not support Web Storage...";
-                        // }
-                    </script>
-                        <!-- <div class="sidebar-heading">Sisa Waktu</div>x` -->
-                        
-                        <!-- <div id="waktu" class="countdown sidebar-p-x"
-                                data-value="{{$kuis->durasi_pengerjaan}}"
-                                data-unit="hour"></div> -->
-                                
-
-                        <div class="sidebar-heading">Soal</div>
-                        <ul class="list-group list-group-fit">
-                        @foreach($semua_soal_isian as $semua_soal)
-                            <li class="list-group-item">
-                                <a href="../mulai_kuis/{{$kuis->id_kuis}}?page={{$loop->iteration}}">
-                                    <span class="media align-items-center">
-                                        <span class="media-left">
-                                            <span class="btn btn-white btn-circle">{{$loop->iteration}}</span>
-                                        </span>
-                                        <span class="media-body">
-                                            {{$semua_soal->soal_isian}}
-                                        </span>
-                                    </span>
-                                </a>
-                            </li>
-                        @endforeach
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
-        @endforeach
         
     @elseif($kuis->tipe_kuis=="pilihan berganda")
-        @foreach($soal_pilihan_berganda as $soal)
         <div class="mdk-drawer-layout__content page ">
             <div class="container-fluid page__container">
                 <ol class="breadcrumb">
@@ -208,149 +160,52 @@
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="media align-items-center">
-                            <!-- <div class="media-left">
-                                <h4 class="mb-0"><strong>{{$loop->iteration}}.</strong></h4>
-                            </div> -->
-                            <div class="media-body">
-                                <h4 class="card-title">
-                                    {{$soal->soal_pilihan_berganda}}
-                                </h4>
+                <form action="../jawab_pilihan_berganda" method="post" enctype="multipart/form-data">
+                @csrf
+                    @foreach($soal_pilihan_berganda as $soal)
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="media align-items-center">
+                                <div class="media-left">
+                                    <h4 class="mb-0"><strong>{{$loop->iteration}}.</strong></h4>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="card-title">
+                                        {{$soal->soal_pilihan_berganda}}
+                                    </h4>
+                                </div>
                             </div>
                         </div>
+                        <div class="card-body">
+                            <input type="text" name="id_mulai_kuis" value="{{$mulai_kuis->id_mulai_kuis}}" hidden></input>
+                            <input type="text" name="id_soal_pilihan_berganda" value="{{$soal->id_soal_pilihan_berganda}}" hidden></input>
+                            <input type="radio" id="pilihan_a[{{$soal->id_soal_pilihan_berganda}}]" name="pilihan[{{$soal->id_soal_pilihan_berganda}}]" value="A" required>
+                            <label for="pilihan_a[{{$soal->id_soal_pilihan_berganda}}]">{{$soal->pilihan_a}}</label><br>
+                            <input type="radio" id="pilihan_b[{{$soal->id_soal_pilihan_berganda}}]" name="pilihan[{{$soal->id_soal_pilihan_berganda}}]" value="B" required>
+                            <label for="pilihan_b[{{$soal->id_soal_pilihan_berganda}}]">{{$soal->pilihan_b}}</label><br>
+                            <input type="radio" id="pilihan_c[{{$soal->id_soal_pilihan_berganda}}]" name="pilihan[{{$soal->id_soal_pilihan_berganda}}]" value="C" required>
+                            <label for="pilihan_c[{{$soal->id_soal_pilihan_berganda}}]">{{$soal->pilihan_c}}</label><br>
+                            <input type="radio" id="pilihan_d[{{$soal->id_soal_pilihan_berganda}}]" name="pilihan[{{$soal->id_soal_pilihan_berganda}}]" value="D" required>
+                            <label for="pilihan_d[{{$soal->id_soal_pilihan_berganda}}]">{{$soal->pilihan_d}}</label><br>
+                            <input type="radio" id="pilihan_e[{{$soal->id_soal_pilihan_berganda}}]" name="pilihan[{{$soal->id_soal_pilihan_berganda}}]" value="E" required>
+                            <label for="pilihan_e[{{$soal->id_soal_pilihan_berganda}}]">{{$soal->pilihan_e}}</label>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form action="../jawab_pilihan_berganda/{{$soal->id_soal_pilihan_berganda}}" id="FormJawab" method="get" enctype="multipart/form-data">
-                        <input type="text" name="id_mulai_kuis" value="{{$mulai_kuis->id_mulai_kuis}}" hidden></input>
-                        @foreach($jawab_id_soal_pilihan_berganda as $jawab_id_soal_pilihan_berganda)
-                        @endforeach
-                        @foreach($jawaban as $jawaban)
-                        @endforeach
-                        
-                        @if(!$jawab_kuis_pilihan_berganda)
-                                <input type="radio" id="pilihan_a" name="pilihan" value="A" onclick="jawab()">
-                                <label for="pilihan_a">{{$soal->pilihan_a}}</label><br>
-                                <input type="radio" id="pilihan_b" name="pilihan" value="B" onclick="jawab()">
-                                <label for="pilihan_b">{{$soal->pilihan_b}}</label><br>
-                                <input type="radio" id="pilihan_c" name="pilihan" value="C" onclick="jawab()">
-                                <label for="pilihan_c">{{$soal->pilihan_c}}</label><br>
-                                <input type="radio" id="pilihan_d" name="pilihan" value="D" onclick="jawab()">
-                                <label for="pilihan_d">{{$soal->pilihan_d}}</label><br>
-                                <input type="radio" id="pilihan_e" name="pilihan" value="E" onclick="jawab()">
-                                <label for="pilihan_e">{{$soal->pilihan_e}}</label>
-                        @elseif($jawab_kuis_pilihan_berganda)
-                            @if($soal->id_soal_pilihan_berganda == $jawab_id_soal_pilihan_berganda->id_soal_pilihan_berganda)
-                                @if($jawaban->jawaban == "A")
-                                <input type="radio" id="pilihan_a" name="pilihan" value="A" onclick="jawab()" checked="checked">
-                                <label for="pilihan_a">{{$soal->pilihan_a}}</label><br>
-                                @else
-                                <input type="radio" id="pilihan_a" name="pilihan" value="A" onclick="jawab()">
-                                <label for="pilihan_a">{{$soal->pilihan_a}}</label><br>
-                                @endif
-
-                                @if($jawaban->jawaban == "B")
-                                <input type="radio" id="pilihan_b" name="pilihan" value="B" onclick="jawab()" checked="checked">
-                                <label for="pilihan_b">{{$soal->pilihan_b}}</label><br>                            
-                                @else
-                                <input type="radio" id="pilihan_b" name="pilihan" value="B" onclick="jawab()">
-                                <label for="pilihan_b">{{$soal->pilihan_b}}</label><br>      
-                                @endif
-
-                                @if($jawaban->jawaban == "C")
-                                <input type="radio" id="pilihan_c" name="pilihan" value="C" onclick="jawab()" checked="checked">
-                                <label for="pilihan_c">{{$soal->pilihan_c}}</label><br>
-                                @else
-                                <input type="radio" id="pilihan_c" name="pilihan" value="C" onclick="jawab()">
-                                <label for="pilihan_c">{{$soal->pilihan_c}}</label><br>
-                                @endif
-
-                                @if($jawaban->jawaban == "D")
-                                <input type="radio" id="pilihan_d" name="pilihan" value="D" onclick="jawab()" checked="checked">
-                                <label for="pilihan_d">{{$soal->pilihan_d}}</label><br>
-                                @else
-                                <input type="radio" id="pilihan_d" name="pilihan" value="D" onclick="jawab()">
-                                <label for="pilihan_d">{{$soal->pilihan_d}}</label><br>
-                                @endif
-
-                                @if($jawaban->jawaban == "E")
-                                <input type="radio" id="pilihan_e" name="pilihan" value="E" onclick="jawab()" checked="checked">
-                                <label for="pilihan_e">{{$soal->pilihan_e}}</label>
-                                @else
-                                <input type="radio" id="pilihan_e" name="pilihan" value="E" onclick="jawab()">
-                                <label for="pilihan_e">{{$soal->pilihan_e}}</label>
-                                @endif
-                                
-                                
-                                
-                            @elseif($soal->id_soal_pilihan_berganda != $jawab_id_soal_pilihan_berganda->id_soal_pilihan_berganda)
-                                <input type="radio" id="pilihan_a" name="pilihan" value="A" onclick="jawab()">
-                                <label for="pilihan_a">{{$soal->pilihan_a}}</label><br>
-                                <input type="radio" id="pilihan_b" name="pilihan" value="B" onclick="jawab()">
-                                <label for="pilihan_b">{{$soal->pilihan_b}}</label><br>
-                                <input type="radio" id="pilihan_c" name="pilihan" value="C" onclick="jawab()">
-                                <label for="pilihan_c">{{$soal->pilihan_c}}</label><br>
-                                <input type="radio" id="pilihan_d" name="pilihan" value="D" onclick="jawab()">
-                                <label for="pilihan_d">{{$soal->pilihan_d}}</label><br>
-                                <input type="radio" id="pilihan_e" name="pilihan" value="E" onclick="jawab()">
-                                <label for="pilihan_e">{{$soal->pilihan_e}}</label>
-                            @endif
-                        @endif
-                        </form>
+                    @endforeach
+                    <div class="card">
+                        <div class="card-footer">
+                            <!-- <a onclick="submit()" class="btn btn-success float-right">Selesai</a> -->
+                            <button type="submit" class="btn btn-success float-right">Selesai</button>
+                        </div>
                     </div>
-                    <script>		
-                        function jawab(){
-                            // window.location.href = "../jawab_pilihan_berganda/{{$soal->id_soal_pilihan_berganda}}";
-                            document.getElementById("FormJawab").submit();
-                        }
-                        
-                    </script>
-                    <div class="card-footer">
-                        <!-- <a href="#"
-                            class="btn btn-white">Skip</a>
-                        <a href="#"
-                            class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a> -->
-                            <center>{{$soal_pilihan_berganda->links()}}</center>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
-                
-        <div class="mdk-drawer js-mdk-drawer"
-                data-align="end">
-            <div class="mdk-drawer__content ">
-                <div class="sidebar sidebar-right sidebar-light bg-white o-hidden"
-                        data-perfect-scrollbar>
-                    <div class="sidebar-p-y">
-                        <!-- <div class="sidebar-heading">Sisa Waktu</div>
-                        <div class="countdown sidebar-p-x"
-                                data-value="{{$kuis->durasi_pengerjaan}}"
-                                data-unit="hour"></div> -->
-
-                        <div class="sidebar-heading">Soal</div>
-                        <ul class="list-group list-group-fit">
-                        @foreach($semua_soal_pilihan_berganda as $semua_soal)
-                            <li class="list-group-item">
-                                <a href="../mulai_kuis/{{$kuis->id_kuis}}?page={{$loop->iteration}}">
-                                    <span class="media align-items-center">
-                                        <span class="media-left">
-                                            <span class="btn btn-white btn-circle">{{$loop->iteration}}</span>
-                                        </span>
-                                        <span class="media-body">
-                                            {{$semua_soal->soal_pilihan_berganda}}
-                                        </span>
-                                    </span>
-                                </a>
-                            </li>
-                        @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
+        
     @endif
 @endforeach
 
 @endsection
+
+
+

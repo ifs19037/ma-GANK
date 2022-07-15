@@ -9,7 +9,6 @@
     <div class="container-fluid page__container">
         
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="student-dashboard.html">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
         <h1 class="h2">Dashboard</h1>
@@ -333,8 +332,7 @@
                                         <a href="./detail_pengumuman/{{$pengumuman->id_pengumuman}}" class="text-body"><strong>{{$pengumuman->judul_pengumuman}}</strong></a>
                                         <!-- <small class="ml-auto text-muted">5 min ago</small> -->
                                     </div>
-                                    <a class="text-black-70"
-                                    href="student-forum-thread.html">{{$pengumuman->keterangan_singkat}}</a>
+                                    <text class="text-black-70">{{$pengumuman->keterangan_singkat}}</text>
                                 </div>
                             </div>
                         </li>
@@ -351,7 +349,6 @@
     <div class="container-fluid page__container">
         
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="student-dashboard.html">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
         <h1 class="h2">Dashboard</h1>
@@ -675,8 +672,7 @@
                                         <a href="./lihat_pengumuman/{{$pengumuman->id_pengumuman}}" class="text-body"><strong>{{$pengumuman->judul_pengumuman}}</strong></a>
                                         <!-- <small class="ml-auto text-muted">5 min ago</small> -->
                                     </div>
-                                    <a class="text-black-70"
-                                    href="student-forum-thread.html">{{$pengumuman->keterangan_singkat}}</a>
+                                    <text class="text-black-70">{{$pengumuman->keterangan_singkat}}</text>
                                 </div>
                             </div>
                         </li>

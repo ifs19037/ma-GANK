@@ -36,7 +36,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label form-label">Soal</label>
                             <div class="col-md-9">
-                                <textarea name="soal_isian" placeholder="" style="height: 150px; width:100%" required>{{$soal->soal_isian}}</textarea>
+                                <textarea name="soal_isian" placeholder="Soal Isian..." style="height: 150px; width:100%" required>{{$soal->soal_isian}}</textarea>
                             </div>
                         </div>
                         <div class="form-group row mb-0">

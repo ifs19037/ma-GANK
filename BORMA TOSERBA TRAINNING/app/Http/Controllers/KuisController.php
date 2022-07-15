@@ -374,11 +374,14 @@ class KuisController extends Controller
         $id_mulai_kuis = DB::table('mulai_kuis')->select('id_mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->first();
         $mulai_kuis = DB::table('mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->get();
         $divisi = DB::table('divisi')->orderBy('nama_divisi', 'asc')->get();
-        $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->inRandomOrder()->simplePaginate(1);
-        $semua_soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->orderBy('id_soal_isian', 'desc')->get();
+
+        // $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->inRandomOrder()->simplePaginate(1);
+        $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->inRandomOrder()->get();
+        $semua_soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->orderBy(DB::raw('RAND()'))->get();
         $jumlah_soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->select(DB::raw('count(*) as jumlah_soal'))->get();
 
-        $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->simplePaginate(1);
+        // $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->simplePaginate(1);
+        $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy(DB::raw('RAND()'))->get();
         $semua_soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->get();
         $jumlah_soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->select(DB::raw('count(*) as jumlah_soal'))->get();
         
@@ -395,35 +398,123 @@ class KuisController extends Controller
         ->with('jawab_kuis_pilihan_berganda', $jawab_kuis_pilihan_berganda);
     }
 
-    public function JawabPilihanBerganda(Request $request, $id_soal)
+    // public function MulaiKuis($id_kuis)
+    // {
+    //     $nik_akun = Session::get('nik_akun');
+
+    //     $kuis = DB::table('kuis')->where('id_kuis', $id_kuis)->get();
+    //     $id_mulai_kuis = DB::table('mulai_kuis')->select('id_mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->first();
+    //     $mulai_kuis = DB::table('mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->get();
+    //     $divisi = DB::table('divisi')->orderBy('nama_divisi', 'asc')->get();
+    //     $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->inRandomOrder()->simplePaginate(1);
+    //     $semua_soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->orderBy('id_soal_isian', 'desc')->get();
+    //     $jumlah_soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->select(DB::raw('count(*) as jumlah_soal'))->get();
+
+    //     // $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->simplePaginate(1);
+    //     $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->get();
+    //     $semua_soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->get();
+    //     $jumlah_soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->select(DB::raw('count(*) as jumlah_soal'))->get();
+        
+    //     // $id_soal_pilihan_berganda = $soal_pilihan_berganda->id_soal_pilihan_berganda;
+    //     $jawab_id_soal_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->select('id_soal_pilihan_berganda')->where('nik_akun',$nik_akun)->where('id_kuis', $id_kuis)->get();
+    //     $jawaban = DB::table('jawaban_kuis_pilihan_berganda')->select('jawaban')->where('nik_akun',$nik_akun)->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('id_kuis', $id_kuis)->get();
+    //     // $jawaban = $jawaban->jawaban;
+    //     $jawab_kuis_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->where('nik_akun',$nik_akun)->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('id_kuis',$id_kuis)->first();
+
+    //     return view('mulai_kuis')->with('kuis', $kuis)->with('mulai_kuis', $mulai_kuis)->with('divisi', $divisi)
+    //     ->with('soal_isian', $soal_isian)->with('semua_soal_isian', $semua_soal_isian)->with('jumlah_soal_isian', $jumlah_soal_isian)
+    //     ->with('semua_soal_pilihan_berganda', $semua_soal_pilihan_berganda)->with('jumlah_soal_pilihan_berganda', $jumlah_soal_pilihan_berganda)
+    //     ->with('soal_pilihan_berganda', $soal_pilihan_berganda)->with('jawab_id_soal_pilihan_berganda', $jawab_id_soal_pilihan_berganda)->with('jawaban', $jawaban)
+    //     ->with('jawab_kuis_pilihan_berganda', $jawab_kuis_pilihan_berganda);
+    // }
+
+    public function JawabPilihanBerganda(Request $request)
     {
         $nik_akun = Session::get('nik_akun');
         $id_mulai_kuis = $request -> id_mulai_kuis;
-        $id_kuis = DB::table('soal_pilihan_berganda')->select('id_kuis')->where('id_soal_pilihan_berganda', $id_soal)->first();
-        $id_jawaban_kuis_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->select('id_jawaban_kuis_pilihan_berganda')
-        ->where('nik_akun',$nik_akun)->where('id_mulai_kuis',$id_mulai_kuis)->where('id_kuis',$id_kuis->id_kuis)->where('id_soal_pilihan_berganda',$id_soal)->first();
-        $jawaban = $request -> pilihan;
-        $jawab_kuis_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->where('nik_akun',$nik_akun)->where('id_mulai_kuis',$id_mulai_kuis)
-        ->where('id_kuis',$id_kuis->id_kuis)->where('id_soal_pilihan_berganda',$id_soal)->first();
-
-        if(!$jawab_kuis_pilihan_berganda){
+        $id_soal_pilihan_berganda = $request -> id_soal_pilihan_berganda;
+        $id_kuis = DB::table('soal_pilihan_berganda')->select('id_kuis')->where('id_soal_pilihan_berganda', $id_soal_pilihan_berganda)->first();
+        
+        $jawaban = $request -> pilihan[$i];
+        
+        $total = count($id_soal_pilihan_berganda);
+        
+        for($i=0; $i<$total; $i++){ 
             DB::table('jawaban_kuis_pilihan_berganda')->insert([
                 'nik_akun' => $nik_akun,
                 'id_mulai_kuis' => $id_mulai_kuis,
                 'id_kuis' => $id_kuis->id_kuis,
-                'id_soal_pilihan_berganda' => $id_soal,
+                'id_soal_pilihan_berganda' => $id_soal_pilihan_berganda,
                 'jawaban' => $jawaban,
             ]);
         }
 
-        elseif($jawab_kuis_pilihan_berganda){
-            DB::table('jawaban_kuis_pilihan_berganda')->where('id_jawaban_kuis_pilihan_berganda', $id_jawaban_kuis_pilihan_berganda->id_jawaban_kuis_pilihan_berganda)->update([
-                'jawaban' => $jawaban,
-            ]);
-        }
-       
-        return redirect("./mulai_kuis/$id_kuis->id_kuis");
+        // $total = count($id_soal_pilihan_berganda);
+
+        // for($i=0; $i<$total; $i++){ 
+        //     $jawaban_kuis_pilihan_berganda = new JawabanKuisPilihanBerganda;
+        //     $jawaban_kuis_pilihan_berganda->nik_akun = $nik_akun;
+        //     $jawaban_kuis_pilihan_berganda->id_mulai_kuis = $id_mulai_kuis[$i];
+        //     $jawaban_kuis_pilihan_berganda->id_kuis = $id_kuis[$i];
+        //     $jawaban_kuis_pilihan_berganda->id_soal_pilihan_berganda = $id_soal_pilihan_berganda[$i];
+        //     $jawaban_kuis_pilihan_berganda->jawaban = $jawaban[$i];
+        //     $jawaban_kuis_pilihan_berganda->save();
+        // }
+
+
+        return redirect("./lihat_kuis/$id_kuis->id_kuis");
     }
+    
+    // public function JawabPilihanBerganda(Request $request, $id_soal)
+    // {
+    //     $nik_akun = Session::get('nik_akun');
+    //     $id_mulai_kuis = $request -> id_mulai_kuis;
+    //     $id_kuis = DB::table('soal_pilihan_berganda')->select('id_kuis')->where('id_soal_pilihan_berganda', $id_soal)->first();
+    //     $id_jawaban_kuis_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->select('id_jawaban_kuis_pilihan_berganda')
+    //     ->where('nik_akun',$nik_akun)->where('id_mulai_kuis',$id_mulai_kuis)->where('id_kuis',$id_kuis->id_kuis)->where('id_soal_pilihan_berganda',$id_soal)->first();
+    //     $jawaban = $request -> pilihan;
+    //     $jawab_kuis_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->where('nik_akun',$nik_akun)->where('id_mulai_kuis',$id_mulai_kuis)
+    //     ->where('id_kuis',$id_kuis->id_kuis)->where('id_soal_pilihan_berganda',$id_soal)->first();
 
+    //     // if(empty($jawaban)){
+            
+    //     // }
+    //     // $page = $request->page;
+        
+    //     if(!$jawab_kuis_pilihan_berganda){
+    //         DB::table('jawaban_kuis_pilihan_berganda')->insert([
+    //             'nik_akun' => $nik_akun,
+    //             'id_mulai_kuis' => $id_mulai_kuis,
+    //             'id_kuis' => $id_kuis->id_kuis,
+    //             'id_soal_pilihan_berganda' => $id_soal,
+    //             'jawaban' => $jawaban,
+    //         ]);
+    //     }
+
+    //     elseif($jawab_kuis_pilihan_berganda){
+    //         DB::table('jawaban_kuis_pilihan_berganda')->where('id_jawaban_kuis_pilihan_berganda', $id_jawaban_kuis_pilihan_berganda->id_jawaban_kuis_pilihan_berganda)->update([
+    //             'jawaban' => $jawaban,
+    //         ]);
+    //     }
+       
+    //     if(Session::get('halaman')=="sebelumnya"){
+    //         return redirect("./mulai_kuis/$id_kuis->id_kuis?page=".($request->page-1));
+    //     }
+
+    //     if(Session::get('halaman')=="selanjutnya"){
+    //         return redirect("./mulai_kuis/$id_kuis->id_kuis?page=".($request->page+1));
+    //     }
+
+    //     // return redirect("./mulai_kuis/$id_kuis->id_kuis");
+    // }
+
+    // public function simpanJawabanKuis(Request $request, $id_kuis)
+    // {
+    //     return response()->json([
+    //         'success'=>true,
+
+    //         'url'=>"../mulai_kuis/$id_kuis?page=".($request->page+1),
+    //     ]);
+    // }
 
 }

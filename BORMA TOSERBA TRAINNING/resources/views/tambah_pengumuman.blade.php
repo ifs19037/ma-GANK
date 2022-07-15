@@ -44,7 +44,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label form-label">Isi Pengumuman</label>
                         <div class="col-sm-9"> 
-                            <textarea name="isi_pengumuman" placeholder="" style="height: 250px; width:100%" required></textarea>
+                            <textarea name="isi_pengumuman" placeholder="Isi Pengumuman..." style="height: 250px; width:100%" required><a></a></textarea>
                         </div>
                     </div>
                     <div class="form-group row mb-0">

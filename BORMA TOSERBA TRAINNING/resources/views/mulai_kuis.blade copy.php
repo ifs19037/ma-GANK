@@ -230,15 +230,15 @@
                         @endforeach
                         
                         @if(!$jawab_kuis_pilihan_berganda)
-                                <input type="radio" id="pilihan_a" name="pilihan" value="A" onclick="jawab()">
+                                <input type="radio" id="pilihan_a" name="pilihan" value="A">
                                 <label for="pilihan_a">{{$soal->pilihan_a}}</label><br>
-                                <input type="radio" id="pilihan_b" name="pilihan" value="B" onclick="jawab()">
+                                <input type="radio" id="pilihan_b" name="pilihan" value="B">
                                 <label for="pilihan_b">{{$soal->pilihan_b}}</label><br>
-                                <input type="radio" id="pilihan_c" name="pilihan" value="C" onclick="jawab()">
+                                <input type="radio" id="pilihan_c" name="pilihan" value="C">
                                 <label for="pilihan_c">{{$soal->pilihan_c}}</label><br>
-                                <input type="radio" id="pilihan_d" name="pilihan" value="D" onclick="jawab()">
+                                <input type="radio" id="pilihan_d" name="pilihan" value="D">
                                 <label for="pilihan_d">{{$soal->pilihan_d}}</label><br>
-                                <input type="radio" id="pilihan_e" name="pilihan" value="E" onclick="jawab()">
+                                <input type="radio" id="pilihan_e" name="pilihan" value="E">
                                 <label for="pilihan_e">{{$soal->pilihan_e}}</label>
                         @elseif($jawab_kuis_pilihan_berganda)
                             @if($soal->id_soal_pilihan_berganda == $jawab_id_soal_pilihan_berganda->id_soal_pilihan_berganda)
@@ -281,9 +281,7 @@
                                 <input type="radio" id="pilihan_e" name="pilihan" value="E" onclick="jawab()">
                                 <label for="pilihan_e">{{$soal->pilihan_e}}</label>
                                 @endif
-                                
-                                
-                                
+
                             @elseif($soal->id_soal_pilihan_berganda != $jawab_id_soal_pilihan_berganda->id_soal_pilihan_berganda)
                                 <input type="radio" id="pilihan_a" name="pilihan" value="A" onclick="jawab()">
                                 <label for="pilihan_a">{{$soal->pilihan_a}}</label><br>
@@ -299,35 +297,47 @@
                         @endif
                         </form>
                     </div>
-                    <script>		
-                        function jawab(){
-                            // window.location.href = "../jawab_pilihan_berganda/{{$soal->id_soal_pilihan_berganda}}";
-                            document.getElementById("FormJawab").submit();
-                        }
-                        
-                    </script>
                     <div class="card-footer">
-                        <!-- <a href="#"
-                            class="btn btn-white">Skip</a>
-                        <a href="#"
-                            class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a> -->
-                            <center>{{$soal_pilihan_berganda->links()}}</center>
+                        @if ($soal_pilihan_berganda->onFirstPage())
+                            <a class="disabled btn btn-white" rel="prev">Sebelumnya</a>
+                        @else
+                            <a onclick="jawab_prev()" class="btn btn-white" rel="prev">Sebelumnya</a>
+                            <!-- <a id="prev_q" class="btn btn-white" rel="prev">Sebelumnya</a> -->
+                        @endif
+
+                        @if ($soal_pilihan_berganda->hasMorePages())
+                            <a onclick="jawab_next()" class="btn btn-white float-right" rel="next">Selanjutnya</a>
+                            <!-- <a id="next_q" class="btn btn-white float-right" rel="next">Selanjutnya</a> -->
+                        @else
+                            <a class="btn btn-success float-right" rel="next">Selesai</a>
+                        @endif
                     </div>
+                    
                 </div>
             </div>
         </div>
-                
-        <div class="mdk-drawer js-mdk-drawer"
-                data-align="end">
+        <script>
+            function jawab_prev(){
+                document.getElementById("FormJawab").submit();
+                // window.location.href = "{{$soal_pilihan_berganda->previousPageUrl()}}";
+                <?php
+                    // Session::put('halaman', 'sebelumnya');
+                ?>
+            }
+
+            function jawab_next(){
+                document.getElementById("FormJawab").submit();
+                // window.location.href = "{{$soal_pilihan_berganda->nextPageUrl()}}";
+                <?php
+                    // Session::put('halaman', 'selanjutnya');
+                ?>
+            }
+        </script>
+        <!-- <div class="mdk-drawer js-mdk-drawer" data-align="end">
             <div class="mdk-drawer__content ">
                 <div class="sidebar sidebar-right sidebar-light bg-white o-hidden"
                         data-perfect-scrollbar>
                     <div class="sidebar-p-y">
-                        <!-- <div class="sidebar-heading">Sisa Waktu</div>
-                        <div class="countdown sidebar-p-x"
-                                data-value="{{$kuis->durasi_pengerjaan}}"
-                                data-unit="hour"></div> -->
-
                         <div class="sidebar-heading">Soal</div>
                         <ul class="list-group list-group-fit">
                         @foreach($semua_soal_pilihan_berganda as $semua_soal)
@@ -348,9 +358,50 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         @endforeach
     @endif
 @endforeach
 
 @endsection
+
+<!-- @section('javascript')
+
+<script>
+    $(document).ready(function() {
+        $('#next_q').click(function(){
+            var form = $('#FormJawab').serialize()
+            $.ajax({
+                // url: "{{$soal_pilihan_berganda->nextPageUrl()}}",
+                method: "POST",
+                data: form,
+                success:function(response){
+                    if(response.success==true){
+                        window.location.href = response.url;
+                    }
+                },
+                error:function(shr){
+                    alert(shr);
+                }
+            });
+        })
+    });
+
+    function jawab_prev(){
+        document.getElementById("FormJawab").submit();
+        window.location.href = "{{$soal_pilihan_berganda->previousPageUrl()}}";
+        <?php
+            // Session::put('prev', 'prev');
+        ?>
+    }
+
+    function jawab_next(){
+        document.getElementById("FormJawab").submit();
+        window.location.href = "{{$soal_pilihan_berganda->nextPageUrl()}}";
+        <?php
+            // Session::put('next', 'next');
+        ?>
+    }
+</script>
+@endsection -->
+

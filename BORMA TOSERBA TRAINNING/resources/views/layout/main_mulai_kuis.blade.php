@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta charset=UTF-8>
         <style>
             .bg-navbar-admin-color{
@@ -11,6 +12,10 @@
             .bg-navbar-karyawan-color{
                 background-color: #F3DB00 !important;
                 color: #ffffff !important;
+            }
+            
+            .tox-statusbar{
+                visibility: hidden;
             }
         </style>
         <link rel="icon" href="{{ URL::asset('asset/image/logo/logo_prama.png') }}">
@@ -250,7 +255,7 @@
             <div class="mdk-header-layout__content">
                 <div data-push data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout">
                     @yield('container')
-                    <div class="mdk-drawer js-mdk-drawer"
+                    <!-- <div class="mdk-drawer js-mdk-drawer"
                         id="default-drawer">
                         <div class="mdk-drawer__content ">
                             <div class="sidebar sidebar-left sidebar-dark bg-dark o-hidden" data-perfect-scrollbar>
@@ -294,7 +299,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div> -->
                 </div>
 
                 <!-- App Settings FAB -->
@@ -371,6 +376,16 @@
         <!-- TinyMCE -->
         <script src="{{ URL::asset('asset/tinymce/js/tinymce/tinymce.min.js') }}"></script>
         <script>tinymce.init({ selector:'textarea' });</script>
+
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
+
+        <!-- @yield('javascript'); -->
     </body>
 </html>
    

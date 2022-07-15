@@ -256,6 +256,32 @@
                             </div>
                         </form>
                     </div>
+
+                    @if(Session::has('alert_1'))
+                    <div class="alert alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>!!!</strong> {{Session::get('alert_1')}}
+                    </div>
+
+                    @elseif(Session::has('alert_2'))
+                    <div class="alert alert-dismissible bg-warning text-white border-0 fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>!!!</strong> {{Session::get('alert_2')}}
+                    </div>
+                    
+                    @elseif(Session::has('alert_3'))
+                    <div class="alert alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>!!!</strong> {{Session::get('alert_3')}}
+                    </div>
+                    @endif
+
                     <div class="tab-pane" id="second">
                         <form action="../PostEditKataSandi" class="form-horizontal" method="post">
                             @csrf
@@ -280,11 +306,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label form-label">Konfirmasi Kata Sandi</label>
+                                <label class="col-sm-3 col-form-label form-label">Konfirmasi Kata Sandi Baru</label>
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="password" name="konfirmasi_kata_sandi" class="form-control" required>
+                                            <input type="password" name="konfirmasi_kata_sandi_baru" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

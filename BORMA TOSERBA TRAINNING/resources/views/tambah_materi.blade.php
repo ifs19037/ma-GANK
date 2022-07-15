@@ -78,7 +78,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label form-label">Isi Materi</label>
                         <div class="col-sm-9">
-                            <textarea name="isi_materi" placeholder="" style="height: 250px; width:100%" required></textarea>
+                            <textarea name="isi_materi" placeholder="Isi Materi..." style="height: 250px; width:100%" required><a></a></textarea>
                         </div>
                     </div>
                     <div class="form-group row mb-0">
