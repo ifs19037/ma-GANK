@@ -72,9 +72,13 @@ Route::get('/mulai_kuis/{id_kuis}', 'App\Http\Controllers\KuisController@MulaiKu
 // Route::post('/mulai_kuis/{id_kuis}', 'App\Http\Controllers\KuisController@simpanJawabanKuis');
 
 // Route::get('/jawab_pilihan_berganda/{id_soal}', 'App\Http\Controllers\KuisController@JawabPilihanBerganda');
-Route::post('/jawab_pilihan_berganda', 'App\Http\Controllers\KuisController@JawabPilihanBerganda');
+Route::post('/jawab_pilihan_berganda/{id_kuis}', 'App\Http\Controllers\KuisController@JawabPilihanBerganda');
 
-Route::post('/jawab_isian', 'App\Http\Controllers\KuisController@JawabIsian');
+Route::get('/nilai_kuis_pilihan_berganda/{id_kuis}', 'App\Http\Controllers\KuisController@NilaiKuisPilihanBerganda');
+
+Route::post('/jawab_isian/{id_kuis}', 'App\Http\Controllers\KuisController@JawabIsian');
+
+Route::get('/review/{id_kuis}', 'App\Http\Controllers\KuisController@Review');
 
 Route::get('/jabatan', 'App\Http\Controllers\InformasiController@ManajemenJabatan');
 Route::post('/jabatan/tambah_jabatan', 'App\Http\Controllers\InformasiController@PostTambahJabatan');

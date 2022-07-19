@@ -104,7 +104,7 @@ class AkunController extends Controller
         $kata_sandi_baru = $request -> kata_sandi_baru;
         $konfirmasi_kata_sandi_baru = $request -> konfirmasi_kata_sandi_baru;
 
-        if($kata_sandi_lama && $konfirmasi_kata_sandi_baru==$kata_sandi_baru){
+        if($cek_kata_sandi_lama && $konfirmasi_kata_sandi_baru==$kata_sandi_baru){
             DB::table('akun')->where('nik_akun', $nik_akun)->update([
                 'password' => $kata_sandi_baru,
             ]);

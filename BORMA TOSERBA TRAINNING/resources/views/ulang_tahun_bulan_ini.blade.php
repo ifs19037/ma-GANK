@@ -37,7 +37,7 @@
                                         <img src="./asset/u_file/foto_profil/{{$ulang_tahun_bulan_ini->foto_karyawan}}" alt="Avatar" class="rounded-circle" width="75px">
                                         </span>
                                         <h4 class="mb-8pt">{{$ulang_tahun_bulan_ini->nama_karyawan}}</h4>
-                                        <a class="text-black-70">{{$ulang_tahun_bulan_ini->lokasi}}</a>
+                                        <text class="text-black-70">{{$ulang_tahun_bulan_ini->lokasi}}</text>
                                     </div>
                                 </div>
                             </div>

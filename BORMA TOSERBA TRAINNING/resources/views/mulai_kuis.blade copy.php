@@ -17,9 +17,9 @@
         <div class="mdk-drawer-layout__content page ">
             <div class="container-fluid page__container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="../kuis">Kuis</a></li>
-                    <li class="breadcrumb-item active"><a href="../lihat_kuis/{{$kuis->id_kuis}}">Lihat Kuis</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">Kuis</li>
+                    <li class="breadcrumb-item active">Lihat Kuis</li>
                     <li class="breadcrumb-item active">{{$kuis->judul_kuis}}</li>
                 </ol>
                 <div class="card-group">
@@ -155,9 +155,9 @@
         <div class="mdk-drawer-layout__content page ">
             <div class="container-fluid page__container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="../kuis">Kuis</a></li>
-                    <li class="breadcrumb-item active"><a href="../lihat_kuis/{{$kuis->id_kuis}}">Lihat Kuis</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">Kuis</li>
+                    <li class="breadcrumb-item active">Lihat Kuis</li>
                     <li class="breadcrumb-item active">{{$kuis->judul_kuis}}</li>
                 </ol>
                 <div class="card-group">

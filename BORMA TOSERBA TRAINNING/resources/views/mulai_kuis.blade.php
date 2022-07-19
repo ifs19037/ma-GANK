@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <form action="../jawab_isian" method="post" enctype="multipart/form-data">
+                <form action="../jawab_isian/{{$kuis->id_kuis}}" method="post" enctype="multipart/form-data">
                 @csrf
                     @foreach($soal_isian as $soal)
                     <div class="card">
@@ -86,7 +86,10 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <textarea name="jawaban_soal_isian" placeholder="Jawaban..." style="height: 250px; width:100%" required><a></a></textarea>
+                            <input type="text" name="id_mulai_kuis" value="{{$mulai_kuis->id_mulai_kuis}}" hidden></input>
+                            <input type="text" name="id_soal_pilihan_berganda" value="{{$soal->id_soal_isian}}" hidden></input>
+
+                            <textarea name="jawaban_soal_isian[{{$soal->id_soal_isian}}]" placeholder="Jawaban..." style="height: 250px; width:100%" required><a>...</a></textarea>
                         </div>
                         <div class="card-footer">
                             
@@ -160,7 +163,7 @@
                     </div>
                 </div>
 
-                <form action="../jawab_pilihan_berganda" method="post" enctype="multipart/form-data">
+                <form action="../jawab_pilihan_berganda/{{$kuis->id_kuis}}" method="post" enctype="multipart/form-data">
                 @csrf
                     @foreach($soal_pilihan_berganda as $soal)
                     <div class="card">
@@ -179,6 +182,7 @@
                         <div class="card-body">
                             <input type="text" name="id_mulai_kuis" value="{{$mulai_kuis->id_mulai_kuis}}" hidden></input>
                             <input type="text" name="id_soal_pilihan_berganda" value="{{$soal->id_soal_pilihan_berganda}}" hidden></input>
+
                             <input type="radio" id="pilihan_a[{{$soal->id_soal_pilihan_berganda}}]" name="pilihan[{{$soal->id_soal_pilihan_berganda}}]" value="A" required>
                             <label for="pilihan_a[{{$soal->id_soal_pilihan_berganda}}]">{{$soal->pilihan_a}}</label><br>
                             <input type="radio" id="pilihan_b[{{$soal->id_soal_pilihan_berganda}}]" name="pilihan[{{$soal->id_soal_pilihan_berganda}}]" value="B" required>
