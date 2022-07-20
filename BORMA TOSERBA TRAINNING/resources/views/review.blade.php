@@ -32,7 +32,7 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="card-title">
-                                    {{$soal->soal_isian}}
+                                    <?php echo $soal->soal_isian?>
                                 </h4>
                             </div>
                         </div>
@@ -68,7 +68,11 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body text-center">
-                            <h4 class="mb-0"></h4>
+                            <h4 class="mb-0">
+                                @foreach($hasil_kuis as $hasil_kuis)
+                                    {{$hasil_kuis->nilai}}
+                                @endforeach
+                            </h4>
                             <small class="text-muted-light">NILAI</small>
                         </div>
                     </div>
@@ -83,7 +87,7 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="card-title">
-                                    {{$soal->soal_pilihan_berganda}}
+                                    <?php echo $soal->soal_pilihan_berganda?>
                                 </h4>
                             </div>
                         </div>

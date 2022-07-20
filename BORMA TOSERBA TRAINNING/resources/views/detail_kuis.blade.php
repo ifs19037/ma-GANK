@@ -127,7 +127,7 @@
                                 <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
                             </div>
                             <div class="media-body">
-                                {{$soal->soal_isian}}
+                                <?php echo $soal->soal_isian?>
                             </div>
                             <div class="media-right text-right">
                                 <div style="width:100px">
@@ -150,7 +150,7 @@
                                 <a href="#" class="btn btn-default nestable-handle"><i class="material-icons">menu</i></a>
                             </div>
                             <div class="media-body">
-                                {{$soal->soal_pilihan_berganda}}
+                                <?php echo $soal->soal_pilihan_berganda?>
                             </div>
                             <div class="media-right text-right">
                                 <div style="width:30px">

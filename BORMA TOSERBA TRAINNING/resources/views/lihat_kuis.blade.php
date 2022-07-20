@@ -146,7 +146,9 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label form-label">Nilai</label>
                     <div class="col-sm-9">
-                        
+                        @foreach($hasil_kuis as $hasil_kuis)
+                            {{$hasil_kuis->nilai}}
+                        @endforeach
                     </div>
                 </div>
                 <div class="form-group row mb-0">

@@ -316,7 +316,9 @@ class KuisController extends Controller
 
         $id_mulai_kuis = DB::table('mulai_kuis')->select('id_mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->first();
 
-        return view('lihat_kuis')->with('kuis', $kuis)->with('id_mulai_kuis', $id_mulai_kuis);
+        $hasil_kuis = DB::table('hasil_kuis')->where('nik_akun',$nik_akun)->where('id_kuis', $id_kuis)->get();
+
+        return view('lihat_kuis')->with('kuis', $kuis)->with('id_mulai_kuis', $id_mulai_kuis)->with('hasil_kuis', $hasil_kuis);
     }
 
     public function MemulaiKuis($id_kuis)
@@ -333,7 +335,10 @@ class KuisController extends Controller
         $bulan = date("m");
         $tahun = date("Y");
         $durasi_pengerjaan = DB::table('kuis')->select('durasi_pengerjaan')->where('id_kuis', $id_kuis)->first();
-        $jam_selesai = $jam + $durasi_pengerjaan->durasi_pengerjaan;
+        $jam_durasi_pengerjaan = round($durasi_pengerjaan->durasi_pengerjaan,0);
+        $menit_durasi_pengerjaan = 60 * ($durasi_pengerjaan->durasi_pengerjaan - $jam_durasi_pengerjaan);
+        $jam_selesai = $jam + $jam_durasi_pengerjaan;
+        $menit_selesai = $menit + $menit_durasi_pengerjaan;
 
         // if($jam_selesai = 24){            
         //     if($menit = 00){
@@ -359,7 +364,7 @@ class KuisController extends Controller
         //     $tahun = date("Y") + 1;
         // }
 
-        $waktu_selesai = date("$tahun-$bulan-$hari $jam_selesai:$menit:$detik");
+        $waktu_selesai = date("$tahun-$bulan-$hari $jam_selesai:$menit_selesai:$detik");
         
         DB::table('mulai_kuis')->insert([
             'nik_akun' => $nik_akun,
@@ -436,12 +441,23 @@ class KuisController extends Controller
         foreach($soal_pilihan_berganda as $soal){
             $id_soal_pilihan_berganda = $soal->id_soal_pilihan_berganda;
             $jawaban = $request -> pilihan[$soal->id_soal_pilihan_berganda];
+            $jawaban_soal_pilihan_berganda = $soal->jawaban_soal_pilihan_berganda;
+            
+            if($jawaban==$jawaban_soal_pilihan_berganda){
+                $poin=1;
+            }
+
+            elseif($jawaban!=$jawaban_soal_pilihan_berganda){
+                $poin=0;
+            }
+
             DB::table('jawaban_kuis_pilihan_berganda')->insert([
                 'nik_akun' => $nik_akun,
                 'id_mulai_kuis' => $id_mulai_kuis,
                 'id_kuis' => $id_kuis,
                 'id_soal_pilihan_berganda' => $id_soal_pilihan_berganda,
                 'jawaban' => $jawaban,
+                'poin' => $poin,
             ]);
         }
 
@@ -473,20 +489,20 @@ class KuisController extends Controller
 
         $jumlah_soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->select(DB::raw('count(*) as jumlah_soal_pilihan_berganda'))
         ->where('id_kuis', $id_kuis)->first();
-        
-        // $jawaban_soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->select('jawaban_soal_pilihan_berganda')->where('id_kuis', $id_kuis)->first();
+
+        $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->get();
         
         $jumlah_benar = DB::table('jawaban_kuis_pilihan_berganda')->select(DB::raw('count(*) as jumlah_benar'))->where('nik_akun',$nik_akun)
-        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('jawaban_kuis_pilihan_berganda.id_kuis', $id_kuis)
-        ->where('jawaban', 'jawaban_soal_pilihan_berganda')
-        ->join('soal_pilihan_berganda', 'jawaban_kuis_pilihan_berganda.id_soal_pilihan_berganda', '=', 'soal_pilihan_berganda.id_soal_pilihan_berganda')->first();
+        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('id_kuis', $id_kuis)->where('poin', 1)->first();
 
         $nilai = (100/$jumlah_soal_pilihan_berganda->jumlah_soal_pilihan_berganda)*$jumlah_benar->jumlah_benar;
+        
+        $nilai_fix = round($nilai,2);
 
         DB::table('hasil_kuis')->insert([
             'nik_akun' => $nik_akun,
             'id_kuis' => $id_kuis,
-            'nilai' => $nilai,
+            'nilai' => $nilai_fix,
         ]);
 
         return redirect("./lihat_kuis/$id_kuis");
@@ -594,7 +610,9 @@ class KuisController extends Controller
         ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('jawaban_kuis_pilihan_berganda.id_kuis', $id_kuis)
         ->join('soal_pilihan_berganda', 'jawaban_kuis_pilihan_berganda.id_soal_pilihan_berganda', '=', 'soal_pilihan_berganda.id_soal_pilihan_berganda')->get();
 
+        $hasil_kuis = DB::table('hasil_kuis')->where('nik_akun',$nik_akun)->where('id_kuis', $id_kuis)->get();
+
         return view('review')->with('kuis', $kuis)->with('soal_isian', $soal_isian)->with('soal_pilihan_berganda', $soal_pilihan_berganda)
-        ->with('jawaban_kuis_pilihan_berganda', $jawaban_kuis_pilihan_berganda)->with('jawaban_kuis_isian', $jawaban_kuis_isian);     
+        ->with('jawaban_kuis_pilihan_berganda', $jawaban_kuis_pilihan_berganda)->with('jawaban_kuis_isian', $jawaban_kuis_isian)->with('hasil_kuis', $hasil_kuis);     
     }
 }

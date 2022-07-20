@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="card-title">
-                                        {{$soal->soal_isian}}
+                                        <?php echo $soal->soal_isian?>
                                     </h4>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="card-title">
-                                        {{$soal->soal_pilihan_berganda}}
+                                        <?php echo $soal->soal_pilihan_berganda?>
                                     </h4>
                                 </div>
                             </div>
