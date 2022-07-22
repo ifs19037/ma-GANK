@@ -111,19 +111,19 @@
                     <div class="card-body">
                         @foreach($jawaban_kuis_pilihan_berganda as $jawaban)
                         @if($jawaban->id_soal_pilihan_berganda==$soal->id_soal_pilihan_berganda)
-                            <input type="radio" id="pilihan_a" value="A" onclick="jawab()" disabled>
+                            <input type="radio" id="pilihan_a" value="A" disabled>
                             <label for="pilihan_a">{{$soal->pilihan_a}}</label><br>
 
-                            <input type="radio" id="pilihan_b" value="B" onclick="jawab()" disabled>
+                            <input type="radio" id="pilihan_b" value="B" disabled>
                             <label for="pilihan_b">{{$soal->pilihan_b}}</label><br>
 
-                            <input type="radio" id="pilihan_c" value="C" onclick="jawab()" disabled>
+                            <input type="radio" id="pilihan_c" value="C" disabled>
                             <label for="pilihan_c">{{$soal->pilihan_c}}</label><br>
 
-                            <input type="radio" id="pilihan_d" value="D" onclick="jawab()" disabled>
+                            <input type="radio" id="pilihan_d" value="D" disabled>
                             <label for="pilihan_d">{{$soal->pilihan_d}}</label><br>
 
-                            <input type="radio" id="pilihan_e" value="E" onclick="jawab()" disabled>
+                            <input type="radio" id="pilihan_e" value="E" disabled>
                             <label for="pilihan_e">{{$soal->pilihan_e}}</label>
 
                             <br><br>
@@ -157,7 +157,7 @@
                                 @endif
                                 
 
-                                Jawaban yang benar : 
+                                <!-- Jawaban yang benar : 
                                 <h5>
                                 @if($soal->jawaban_soal_pilihan_berganda=="A")
                                     {{$jawaban->pilihan_a}}
@@ -174,7 +174,7 @@
                                 @if($soal->jawaban_soal_pilihan_berganda=="E")
                                     {{$jawaban->pilihan_e}}
                                 @endif
-                                </h5>
+                                </h5> -->
                             </b>
                         @endif
                         @endforeach

@@ -14,10 +14,10 @@
         <div class="card">
             @foreach($kuis as $kuis)
             <div class="card-body">
-            <div class="row">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive border-bottom" data-toggle="lists" data-lists-values='["js-lists-values-nama-karyawan",
-                        "js-lists-values-nik", "js-lists-values-jabatan", "js-lists-values-divisi", "js-lists-values-lokasi"]'>
+                        "js-lists-values-nik", "js-lists-values-lokasi", "js-lists-values-nilai"]'>
                             <form action="#" method="GET">
                                 <div class="search-form search-form--light mb-3">
                                     <input type="text" class="form-control search" placeholder="Search">
@@ -73,7 +73,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>

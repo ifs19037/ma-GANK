@@ -290,6 +290,8 @@ class KuisController extends Controller
 
     public function Kuis()
     {
+        $nik_akun = Session::get('nik_akun');
+
         $divisi = Session::get('divisi');
 
         $kuis = DB::table('kuis')->where('divisi', $divisi)->where('status', 'tampil')->orderBy('id_kuis', 'desc')->get();
@@ -299,6 +301,8 @@ class KuisController extends Controller
     
     public function KuisCari(Request $request)
     {
+        $nik_akun = Session::get('nik_akun');
+
         $divisi = Session::get('divisi');
         
 		$cari = $request->cari;

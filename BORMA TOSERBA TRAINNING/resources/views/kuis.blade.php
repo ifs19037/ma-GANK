@@ -43,11 +43,7 @@
                                     <div class="flex" style="min-width: 200px;">
                                         <!-- <h5 class="card-title text-base m-0"><a href="instructor-course-edit.html"><strong>Learn Vue.js</strong></a></h5> -->
                                         <?php date_default_timezone_set('Asia/Jakarta');?>
-                                        @if($kuis->tanggal_kuis==date('Y-m-d'))
-                                            <h4 class="card-title mb-1"><a href="./lihat_kuis/{{$kuis->id_kuis}}">{{$kuis->judul_kuis}}</a></h4>
-                                        @elseif($kuis->tanggal_kuis!=date('Y-m-d'))
-                                            <h4 class="card-title mb-1"><a>{{$kuis->judul_kuis}}</a></h4>
-                                        @endif
+                                        <h4 class="card-title mb-1"><a href="./lihat_kuis/{{$kuis->id_kuis}}">{{$kuis->judul_kuis}}</a></h4>
                                         <p class="text-black-70">{{$kuis->keterangan_singkat}}</p>
                                         <div class="d-flex align-items-end">
                                             <div class="d-flex flex flex-column mr-3">

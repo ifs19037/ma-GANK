@@ -145,3 +145,4 @@ Route::get('/ulang_tahun_bulan_ini', 'App\Http\Controllers\KaryawanController@Ul
 Route::get('/ulang_tahun_bulan_ini', 'App\Http\Controllers\KaryawanController@UlangTahunBulanIniCari');
 
 Route::get('/papan_peringkat', 'App\Http\Controllers\PapanPeringkatController@PapanPeringkat');
+Route::get('/papan_peringkat', 'App\Http\Controllers\PapanPeringkatController@PapanPeringkatCari');
