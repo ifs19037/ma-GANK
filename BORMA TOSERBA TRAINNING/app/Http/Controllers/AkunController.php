@@ -64,8 +64,10 @@ class AkunController extends Controller
         return redirect('./manajemen_akun');
     }
 
-    public function EditProfil($nik_akun)
+    public function EditProfil()
     {
+        $nik_akun = Session::get('nik_akun');
+
         $profil = DB::table('akun')->where('nik_akun', $nik_akun)->join('data_karyawan', 'akun.nik_karyawan', '=', 'data_karyawan.nik_karyawan')->get();
 
         return view('edit_profil')->with('profil', $profil);

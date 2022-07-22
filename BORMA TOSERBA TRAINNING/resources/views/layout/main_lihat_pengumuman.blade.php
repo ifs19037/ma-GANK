@@ -96,7 +96,7 @@
                             <ul class="nav navbar-nav flex-nowrap">
 
                                 <!-- Notifications dropdown -->
-                                <li class="nav-item dropdown dropdown-notifications dropdown-menu-sm-full">
+                                <!-- <li class="nav-item dropdown dropdown-notifications dropdown-menu-sm-full">
                                     <button class="nav-link btn-flush dropdown-toggle"
                                             type="button"
                                             data-toggle="dropdown"
@@ -218,14 +218,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
                                 <!-- // END Notifications dropdown -->
                                 <!-- User dropdown -->
                                 <li class="nav-item dropdown ml-1 ml-md-3">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
                                         <img src="../asset/u_file/foto_profil/{{Session::get('foto_karyawan')}}" alt="Avatar" class="rounded-circle" width="40"></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="../edit_profil/{{Session::get('nik_akun')}}">
+                                        <a class="dropdown-item" href="../edit_profil">
                                             <i class="material-icons">edit</i> Edit Profil
                                         </a>
                                         <a class="dropdown-item" href="../keluar">

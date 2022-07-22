@@ -82,8 +82,10 @@
                                     <!-- <a class="dropdown-item" href="./detail_kuis/{{$kuis->id_kuis}}">Edit course</a>
                                     <div class="dropdown-divider"></div> -->
                                     @if($kuis->tipe_kuis=="isian")
+                                        <a class="dropdown-item" href="./review_kuis/{{$kuis->id_kuis}}">Review</a>
                                         <a class="dropdown-item text-danger" href="./hapus_kuis_isian/{{$kuis->id_kuis}}">Hapus Kuis</a>
                                     @elseif($kuis->tipe_kuis=="pilihan berganda")
+                                        <a class="dropdown-item" href="./review_kuis/{{$kuis->id_kuis}}">Review</a>
                                         <a class="dropdown-item text-danger" href="./hapus_kuis_pilihan_berganda/{{$kuis->id_kuis}}">Hapus Kuis</a>
                                     @endif
                                 </div>

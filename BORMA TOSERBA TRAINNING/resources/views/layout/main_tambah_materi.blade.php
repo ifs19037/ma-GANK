@@ -102,7 +102,7 @@
                             <ul class="nav navbar-nav flex-nowrap">
 
                                 <!-- Notifications dropdown -->
-                                <li class="nav-item dropdown dropdown-notifications dropdown-menu-sm-full">
+                                <!-- <li class="nav-item dropdown dropdown-notifications dropdown-menu-sm-full">
                                     <button class="nav-link btn-flush dropdown-toggle"
                                             type="button"
                                             data-toggle="dropdown"
@@ -224,7 +224,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
                                 <!-- // END Notifications dropdown -->
                                 <!-- User dropdown -->
                                 <li class="nav-item dropdown ml-1 ml-md-3">

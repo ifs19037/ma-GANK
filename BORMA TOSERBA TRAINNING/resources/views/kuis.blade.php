@@ -31,12 +31,23 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column flex-sm-row">
-                                    <a href="./lihat_kuis/{{$kuis->id_kuis}}" class="avatar avatar-lg avatar-4by3 mb-3 w-xs-plus-down-100 mr-sm-3">
-                                        <img src="../asset/u_file/foto_kuis/{{$kuis->foto_kuis}}" alt="Card image cap" class="avatar-img rounded">
-                                    </a>
+                                    @if($kuis->tanggal_kuis==date('Y-m-d'))
+                                        <a href="./lihat_kuis/{{$kuis->id_kuis}}" class="avatar avatar-lg avatar-4by3 mb-3 w-xs-plus-down-100 mr-sm-3">
+                                            <img src="../asset/u_file/foto_kuis/{{$kuis->foto_kuis}}" alt="Card image cap" class="avatar-img rounded">
+                                        </a>
+                                    @elseif($kuis->tanggal_kuis!=date('Y-m-d'))
+                                        <a class="avatar avatar-lg avatar-4by3 mb-3 w-xs-plus-down-100 mr-sm-3">
+                                            <img src="../asset/u_file/foto_kuis/{{$kuis->foto_kuis}}" alt="Card image cap" class="avatar-img rounded">
+                                        </a>
+                                    @endif
                                     <div class="flex" style="min-width: 200px;">
                                         <!-- <h5 class="card-title text-base m-0"><a href="instructor-course-edit.html"><strong>Learn Vue.js</strong></a></h5> -->
-                                        <h4 class="card-title mb-1"><a href="./lihat_kuis/{{$kuis->id_kuis}}">{{$kuis->judul_kuis}}</a></h4>
+                                        <?php date_default_timezone_set('Asia/Jakarta');?>
+                                        @if($kuis->tanggal_kuis==date('Y-m-d'))
+                                            <h4 class="card-title mb-1"><a href="./lihat_kuis/{{$kuis->id_kuis}}">{{$kuis->judul_kuis}}</a></h4>
+                                        @elseif($kuis->tanggal_kuis!=date('Y-m-d'))
+                                            <h4 class="card-title mb-1"><a>{{$kuis->judul_kuis}}</a></h4>
+                                        @endif
                                         <p class="text-black-70">{{$kuis->keterangan_singkat}}</p>
                                         <div class="d-flex align-items-end">
                                             <div class="d-flex flex flex-column mr-3">

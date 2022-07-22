@@ -1,6 +1,6 @@
 @extends('layout/main_review')
 
-@section('title', 'Mulai Kuis')
+@section('title', 'Review Kuis')
 
 @section('container')
 
@@ -17,7 +17,11 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body text-center">
-                            <h4 class="mb-0"></h4>
+                            <h4 class="mb-0">
+                                @foreach($hasil_kuis as $hasil_kuis)
+                                    {{$hasil_kuis->nilai}}
+                                @endforeach
+                            </h4>
                             <small class="text-muted-light">NILAI</small>
                         </div>
                     </div>
@@ -39,17 +43,29 @@
                     </div>
                     <div class="card-body">
                         @foreach($jawaban_kuis_isian as $jawaban)
-                        @if($jawaban->id_soal_isian==$soal->id_soal_isian)
-                        <b>Jawaban anda : </b><br>
-                            <table border="2" width="100%" style="margin-top: 5px">
-                                <tr>
-                                    <td style="padding: 15px">
-                                        <?php echo $jawaban->jawaban?>
-                                    </td>
-                                </tr>
-                            </table>
-                        @endif
+                            @if($jawaban->id_soal_isian==$soal->id_soal_isian)
+                            <b>Jawaban anda : </b><br>
+                                <table border="2" width="100%" style="margin-top: 5px">
+                                    <tr>
+                                        <td style="padding: 15px">
+                                            <?php echo $jawaban->jawaban?>
+                                        </td>
+                                    </tr>
+                                </table>
+                            @endif
                         @endforeach
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-1 col-form-label form-label">Poin</label>
+                            <div class="col-sm-1">
+                            @foreach($jawaban_kuis_isian as $jawaban)
+                                @if($jawaban->id_soal_isian==$soal->id_soal_isian)
+                                    <label class="col-form-label">{{$jawaban->poin}}</label>
+                                @endif
+                            @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @endforeach

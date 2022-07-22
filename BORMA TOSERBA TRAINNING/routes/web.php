@@ -78,7 +78,15 @@ Route::get('/nilai_kuis_pilihan_berganda/{id_kuis}', 'App\Http\Controllers\KuisC
 
 Route::post('/jawab_isian/{id_kuis}', 'App\Http\Controllers\KuisController@JawabIsian');
 
+Route::post('/nilai_kuis_isian/{id_kuis}/{nik_akun}', 'App\Http\Controllers\KuisController@NilaiKuisIsian');
+
+Route::get('/set_nilai_kuis_isian/{id_kuis}/{nik_akun}', 'App\Http\Controllers\KuisController@SetNilaiKuisIsian');
+
 Route::get('/review/{id_kuis}', 'App\Http\Controllers\KuisController@Review');
+
+Route::get('/review_kuis/{id_kuis}', 'App\Http\Controllers\KuisController@ReviewKuis');
+
+Route::get('/review_pengerjaan_kuis/{id_kuis}/{nik_akun}', 'App\Http\Controllers\KuisController@ReviewPengerjaanKuis');
 
 Route::get('/jabatan', 'App\Http\Controllers\InformasiController@ManajemenJabatan');
 Route::post('/jabatan/tambah_jabatan', 'App\Http\Controllers\InformasiController@PostTambahJabatan');
@@ -129,9 +137,11 @@ Route::get('/materi', 'App\Http\Controllers\MateriController@Materi');
 Route::get('/materi', 'App\Http\Controllers\MateriController@MateriCari');
 Route::get('/lihat_materi/{id_materi}', 'App\Http\Controllers\MateriController@LihatMateri');
 
-Route::get('/edit_profil/{nik_akun}', 'App\Http\Controllers\AkunController@EditProfil');
+Route::get('/edit_profil', 'App\Http\Controllers\AkunController@EditProfil');
 Route::post('/PostEditFotoProfil', 'App\Http\Controllers\AkunController@PostEditFotoProfil');
 Route::post('/PostEditKataSandi', 'App\Http\Controllers\AkunController@PostEditKataSandi');
 
 Route::get('/ulang_tahun_bulan_ini', 'App\Http\Controllers\KaryawanController@UlangTahunBulanIni');
 Route::get('/ulang_tahun_bulan_ini', 'App\Http\Controllers\KaryawanController@UlangTahunBulanIniCari');
+
+Route::get('/papan_peringkat', 'App\Http\Controllers\PapanPeringkatController@PapanPeringkat');

@@ -490,7 +490,7 @@ class KuisController extends Controller
         $jumlah_soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->select(DB::raw('count(*) as jumlah_soal_pilihan_berganda'))
         ->where('id_kuis', $id_kuis)->first();
 
-        $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->get();
+        // $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy('id_soal_pilihan_berganda', 'desc')->get();
         
         $jumlah_benar = DB::table('jawaban_kuis_pilihan_berganda')->select(DB::raw('count(*) as jumlah_benar'))->where('nik_akun',$nik_akun)
         ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('id_kuis', $id_kuis)->where('poin', 1)->first();
@@ -578,10 +578,68 @@ class KuisController extends Controller
                 'id_kuis' => $id_kuis,
                 'id_soal_isian' => $id_soal_isian,
                 'jawaban' => $jawaban,
+                'poin' => "-",
             ]);
         }
+
+        DB::table('hasil_kuis')->insert([
+            'nik_akun' => $nik_akun,
+            'id_kuis' => $id_kuis,
+            'nilai' => "-",
+        ]);
         
         return redirect("./lihat_kuis/$id_kuis");
+    }
+
+    public function NilaiKuisIsian(Request $request, $id_kuis, $nik_akun)
+    {
+        $kuis = DB::table('kuis')->where('id_kuis', $id_kuis)->get();
+
+        $id_mulai_kuis = DB::table('mulai_kuis')->select('id_mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->first();
+
+        $id_hasil_kuis = DB::table('hasil_kuis')->select('id_hasil_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->first();
+
+        $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->orderBy(DB::raw('RAND()'))->get();
+
+        $jawaban_kuis_isian = DB::table('jawaban_kuis_isian')->where('nik_akun',$nik_akun)
+        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('jawaban_kuis_isian.id_kuis', $id_kuis)
+        ->join('soal_isian', 'jawaban_kuis_isian.id_soal_isian', '=', 'soal_isian.id_soal_isian')->get();
+
+        foreach($jawaban_kuis_isian as $jawaban){
+            $id_jawaban_kuis_isian = $jawaban->id_jawaban_kuis_isian;
+            $poin = $request -> poin[$jawaban->id_jawaban_kuis_isian];
+            DB::table('jawaban_kuis_isian')->where('id_jawaban_kuis_isian', $id_jawaban_kuis_isian)->update([
+                'poin' => $poin,
+            ]);
+        }
+
+        return redirect("./set_nilai_kuis_isian/$id_kuis/$nik_akun");
+    }
+
+    public function SetNilaiKuisIsian(Request $request, $id_kuis, $nik_akun)
+    {
+        $kuis = DB::table('kuis')->where('id_kuis', $id_kuis)->get();
+
+        $id_mulai_kuis = DB::table('mulai_kuis')->select('id_mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->first();
+
+        $id_hasil_kuis = DB::table('hasil_kuis')->select('id_hasil_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->first();
+
+        $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->orderBy(DB::raw('RAND()'))->get();
+
+        $jumlah_soal_isian = DB::table('soal_isian')->select(DB::raw('count(*) as jumlah_soal_isian'))->where('id_kuis', $id_kuis)->first();
+
+        $total_poin = DB::table('jawaban_kuis_isian')->select(DB::raw('sum(poin) as total_poin'))->where('nik_akun',$nik_akun)
+        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('id_kuis', $id_kuis)->first();
+
+        $nilai = $total_poin->total_poin/$jumlah_soal_isian->jumlah_soal_isian;
+        
+        $nilai_fix = round($nilai,2);
+
+        DB::table('hasil_kuis')->where('id_hasil_kuis', $id_hasil_kuis->id_hasil_kuis)->update([
+            'nilai' => $nilai_fix,
+        ]);
+
+        return redirect("./review_kuis/$id_kuis");
     }
 
     public function Review($id_kuis)
@@ -613,6 +671,46 @@ class KuisController extends Controller
         $hasil_kuis = DB::table('hasil_kuis')->where('nik_akun',$nik_akun)->where('id_kuis', $id_kuis)->get();
 
         return view('review')->with('kuis', $kuis)->with('soal_isian', $soal_isian)->with('soal_pilihan_berganda', $soal_pilihan_berganda)
+        ->with('jawaban_kuis_pilihan_berganda', $jawaban_kuis_pilihan_berganda)->with('jawaban_kuis_isian', $jawaban_kuis_isian)->with('hasil_kuis', $hasil_kuis);     
+    }
+
+    public function ReviewKuis($id_kuis)
+    {
+        $kuis = DB::table('kuis')->where('id_kuis', $id_kuis)->get();
+
+        $hasil_kuis = DB::table('hasil_kuis')->where('id_kuis', $id_kuis)
+        ->join('data_karyawan', 'hasil_kuis.nik_akun', '=', 'data_karyawan.nik_karyawan')->get();
+
+        return view('review_kuis')->with('kuis', $kuis)->with('hasil_kuis', $hasil_kuis);
+    }
+
+    public function ReviewPengerjaanKuis($id_kuis, $nik_akun)
+    {
+        $kuis = DB::table('kuis')->where('id_kuis', $id_kuis)->get();
+        $id_mulai_kuis = DB::table('mulai_kuis')->select('id_mulai_kuis')->where('nik_akun', $nik_akun)->where('id_kuis', $id_kuis)->orderBy('id_mulai_kuis', 'desc')->limit(1)->first();
+
+        // $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->inRandomOrder()->simplePaginate(1);
+        $soal_isian = DB::table('soal_isian')->where('id_kuis', $id_kuis)->orderBy(DB::raw('RAND()'))->get();
+
+        $id_soal_isian = DB::table('jawaban_kuis_isian')->select('id_soal_isian')
+        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('nik_akun',$nik_akun)->where('id_kuis', $id_kuis)->first();
+        
+        $jawaban_kuis_isian = DB::table('jawaban_kuis_isian')->where('nik_akun',$nik_akun)
+        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('jawaban_kuis_isian.id_kuis', $id_kuis)
+        ->join('soal_isian', 'jawaban_kuis_isian.id_soal_isian', '=', 'soal_isian.id_soal_isian')->get();
+
+        $soal_pilihan_berganda = DB::table('soal_pilihan_berganda')->where('id_kuis', $id_kuis)->orderBy(DB::raw('RAND()'))->get();
+        
+        $id_soal_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->select('id_soal_pilihan_berganda')
+        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('nik_akun',$nik_akun)->where('id_kuis', $id_kuis)->first();
+        
+        $jawaban_kuis_pilihan_berganda = DB::table('jawaban_kuis_pilihan_berganda')->where('nik_akun',$nik_akun)
+        ->where('id_mulai_kuis',$id_mulai_kuis->id_mulai_kuis)->where('jawaban_kuis_pilihan_berganda.id_kuis', $id_kuis)
+        ->join('soal_pilihan_berganda', 'jawaban_kuis_pilihan_berganda.id_soal_pilihan_berganda', '=', 'soal_pilihan_berganda.id_soal_pilihan_berganda')->get();
+
+        $hasil_kuis = DB::table('hasil_kuis')->where('nik_akun',$nik_akun)->where('id_kuis', $id_kuis)->get();
+
+        return view('review_pengerjaan_kuis')->with('nik_akun', $nik_akun)->with('kuis', $kuis)->with('soal_isian', $soal_isian)->with('soal_pilihan_berganda', $soal_pilihan_berganda)
         ->with('jawaban_kuis_pilihan_berganda', $jawaban_kuis_pilihan_berganda)->with('jawaban_kuis_isian', $jawaban_kuis_isian)->with('hasil_kuis', $hasil_kuis);     
     }
 }

@@ -72,7 +72,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label form-label">Kode Link Video</label>
                         <div class="col-sm-9">
-                            <input name="kode_link_video" type="text" class="form-control">
+                            <input name="kode_link_video" type="text" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-group row">

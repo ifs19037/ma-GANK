@@ -1,5 +1,5 @@
 @if(Session::get('level'))
-<html>
+<html lang="en">
     <head>
         <style>
             .bg-navbar-admin-color{
@@ -48,6 +48,9 @@
 
         <!-- Touchspin -->
         <link type="text/css" href="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/bootstrap-touchspin.css') }}" rel="stylesheet">
+
+        <!-- Vendor CSS -->
+        <link rel="stylesheet" href="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/css/nestable.css') }}">
     </head>
 
     <body class=" layout-fluid"> 
@@ -86,7 +89,7 @@
                             </button>
 
                             <!-- Brand -->
-                            <a href="./" >
+                            <a href="../" >
                                 <img src="{{ URL::asset('asset/image/logo/logo_prama.png') }}" height="60px" style="padding:10px;"/>
                             </a>
 
@@ -225,7 +228,7 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
                                         <img src="{{ URL::asset('asset/u_file/foto_profil/user.png') }}" alt="Avatar" class="rounded-circle" width="40"></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="./keluar">
+                                        <a class="dropdown-item" href="../keluar">
                                             <i class="material-icons">lock</i> Keluar
                                         </a>
                                     </div>
@@ -253,7 +256,7 @@
                                     <div class="sidebar-heading">MENU</div>
                                     <ul class="sidebar-menu sm-active-button-bg">
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./">
+                                            <a class="sidebar-menu-button" href="../">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i> Dashboard
                                             </a>
                                         </li>
@@ -264,24 +267,24 @@
                                             </a>
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_pelatihan">
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_materi">
+                                                    <a class="sidebar-menu-button" href="../manajemen_materi">
                                                         <span class="sidebar-menu-text">Manajemen Materi</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item active">
-                                                    <a class="sidebar-menu-button" href="#">
+                                                    <a class="sidebar-menu-button" href="../manajemen_kuis">
                                                         <span class="sidebar-menu-text">Manajemen Kuis</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./manajemen_sop">
+                                            <a class="sidebar-menu-button" href="../manajemen_sop">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i> Manajemen SOP
                                             </a>
                                         </li>
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./papan_peringkat">
+                                            <a class="sidebar-menu-button" href="../papan_peringkat">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Papan Peringkat
                                             </a>
                                         </li>
@@ -292,19 +295,19 @@
                                             </a>
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_karyawan">
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_akun">
+                                                    <a class="sidebar-menu-button" href="../manajemen_akun">
                                                         <span class="sidebar-menu-text">Manajemen Akun</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_data">
+                                                    <a class="sidebar-menu-button" href="../manajemen_data">
                                                         <span class="sidebar-menu-text">Manajemen Data</span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button" href="./ulang_tahun_bulan_ini">
+                                            <a class="sidebar-menu-button" href="../ulang_tahun_bulan_ini">
                                                 <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> Ulang Tahun Bulan Ini
                                             </a>
                                         </li>
@@ -315,22 +318,22 @@
                                             </a>
                                             <ul class="sidebar-submenu sm-indent collapse" id="manajemen_informasi">
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./manajemen_pengumuman">
+                                                    <a class="sidebar-menu-button" href="../manajemen_pengumuman">
                                                         <span class="sidebar-menu-text">Manajemen Pengumuman</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./jabatan">
+                                                    <a class="sidebar-menu-button" href="../jabatan">
                                                         <span class="sidebar-menu-text">Jabatan</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./divisi">
+                                                    <a class="sidebar-menu-button" href="../divisi">
                                                         <span class="sidebar-menu-text">Divisi</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item">
-                                                    <a class="sidebar-menu-button" href="./lokasi">
+                                                    <a class="sidebar-menu-button" href="../lokasi">
                                                         <span class="sidebar-menu-text">Lokasi</span>
                                                     </a>
                                                 </li>
@@ -346,117 +349,6 @@
                 <!-- App Settings FAB -->
                 <div id="app-settings" hidden>
                     <app-settings layout-active="default" :layout-location="{ 'fixed': '{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/instructor-dashboard.html') }}', 'default': '{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/student-dashboard.html') }}'  }" sidebar-variant="bg-transparent border-0"></app-settings>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="TambahKuis">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                        <h4 class="modal-title text-white">Tambah Kuis</h4>
-                        <button type="button"
-                                class="close text-white"
-                                data-dismiss="modal"
-                                aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="./manajemen_kuis/tambah_kuis" method="post" enctype="multipart/form-data">
-                        @csrf
-                            <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Judul Kuis</label>
-                                <div class="col-md-9">
-                                    <div class="custom-file">
-                                        <input name="judul_kuis" type="text" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Keterangan Singkat</label>
-                                <div class="col-md-9">
-                                    <div class="custom-file">
-                                        <input name="keterangan_singkat" type="text" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Tipe Kuis</label>
-                                <div class="col-md-9">
-                                    <div class="custom-file">
-                                        <select  name="tipe_kuis"class="custom-select form-control" required>
-                                            <option selected disabled value="">Pilih Tipe</option>
-                                            <option value="isian">Isian</option>
-                                            <option value="pilihan berganda">Plihan Berganda</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Foto Kuis</label>
-                                <div class="col-md-9">
-                                    <div class="custom-file">
-                                        <!--Jika Tidak Ada Foto-->
-                                        <input type="text" name="foto_kosong" class="form-control" value="empty.png" required hidden>
-                                        <!--Jika Ada Foto-->
-                                        <input name="foto_kuis" type="file" id="foto_kuis" class="custom-file-input" accept="image/*">
-                                        <label for="foto_kuis" class="custom-file-label">Pilih Foto</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Tanggal Kuis</label>
-                                <div class="col-md-9">
-                                    <div class="custom-file">
-                                        <input name="tanggal_kuis" type="date" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="qtitle" class="col-form-label form-label col-md-3">Durasi Pengerjaan</label>
-                                <div class="col-md-9">
-                                    <div class="custom-file">
-                                        <input name="durasi_pengerjaan" type="text" class="form-control" maxlength="3" style="max-width:50px" onkeypress="return hanyaAngka(event)" required>
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md-2">
-                                    <div class="custom-file">
-                                        <input name="durasi_pengerjaan" type="text" class="form-control" maxlength="3" onkeypress="return hanyaAngka(event)" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="custom-file">
-                                        <text class="form-control" style="border:0px solid; box-shadow: none;">Jam<text>
-                                    </div>
-                                </div> -->
-                            </div>
-                            <script>
-                                function hanyaAngka(event) {
-                                    var angka = (event.which) ? event.which : event.keyCode
-                                    if ((angka < 46 || angka > 57) )
-                                        return false;
-                                    return true;
-                                }
-                            </script>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label form-label">Divisi</label>
-                                <div class="col-sm-9">
-                                    <select  name="divisi"class="custom-select form-control" required>
-                                        <option selected disabled value="">Pilih Divisi</option>
-                                        @foreach($divisi as $divisi)
-                                            <option value="{{$divisi->nama_divisi}}">{{$divisi->nama_divisi}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-3">
-                                    <button type="submit" class="btn btn-success">Tambah</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
@@ -517,6 +409,13 @@
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/toggle-check-all.js') }}"></script>
         <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/check-selected-row.js') }}"></script>
 
+        <!-- Vendor JS -->
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.nestable.js') }}"></script>
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/vendor/jquery.bootstrap-touchspin.js') }}"></script>
+
+        <!-- Initialize -->
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/nestable.js') }}"></script>
+        <script src="{{ URL::asset('asset/LearnPlus/learnplus.demo.frontendmatter.com/assets/js/touchspin.js') }}"></script>
     </body>
 </html>
    

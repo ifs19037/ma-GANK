@@ -14,82 +14,6 @@
                 <h4 class="card-title">Profil</h4>
             </div> -->
             @foreach($profil as $profil)
-            <!-- <div class="card-body">
-                <form action="./PostEditProfil" method="post">
-                @csrf
-                <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Nama Karyawan</label>
-                        <div class="col-sm-9">
-                            {{$profil->nama_karyawan}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">NIP</label>
-                        <div class="col-sm-9">
-                            {{$profil->nik_karyawan}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="course_title" class="col-sm-3 col-form-label form-label">Jenis Kelamin</label>
-                        <div class="col-sm-9">
-                            {{$profil->jenis_kelamin}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Jabatan</label>
-                        <div class="col-sm-9">
-                            {{$profil->jabatan}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Divisi</label>
-                        <div class="col-sm-9">
-                            {{$profil->divisi}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Lokasi</label>
-                        <div class="col-sm-9">
-                            {{$profil->lokasi}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Tanggal Lahir</label>
-                        <div class="col-sm-9">
-                            {{$profil->tanggal_lahir}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Tanggal Masuk</label>
-                        <div class="col-sm-9">
-                            {{$profil->tanggal_masuk}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Email</label>
-                        <div class="col-sm-9">
-                            {{$profil->email}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">No Telepon</label>
-                        <div class="col-sm-9">
-                            {{$profil->no_telepon}}
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Alamat KTP</label>
-                        <div class="col-sm-9">
-                            {{$profil->alamat_ktp}}
-                        </div>
-                    </div>
-                    <div class="form-group row mb-0">
-                        <div class="col-sm-9 offset-sm-3">
-                            <button type="submit" class="btn btn-success">Simpan</button>
-                        </div>
-                    </div>
-                </form>
-            </div> -->
             <div class="card">
                 <ul class="nav nav-tabs nav-tabs-card">
                     <li class="nav-item">
@@ -129,7 +53,8 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input class="form-control" value="{{$profil->nama_karyawan}}" disabled>
+                                            <label class="col-form-label">{{$profil->nama_karyawan}}</label>
+                                            <!-- <input class="form-control" value="{{$profil->nama_karyawan}}" disabled> -->
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +64,8 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input class="form-control" value="{{$profil->nik_karyawan}}" disabled>
+                                            <label class="col-form-label">{{$profil->nik_karyawan}}</label>
+                                            <!-- <input class="form-control" value="{{$profil->nik_karyawan}}" disabled> -->
                                         </div>
                                     </div>
                                 </div>
@@ -149,9 +75,10 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <select class="custom-select form-control" required disabled>
+                                            <label class="col-form-label">{{$profil->jenis_kelamin}}</label>
+                                            <!-- <select class="custom-select form-control" required disabled>
                                                 <option selected value="{{$profil->jenis_kelamin}}" hidden>{{$profil->jenis_kelamin}}</option>
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </div>
                                 </div>
@@ -161,9 +88,10 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <select class="custom-select form-control" required disabled>
+                                            <label class="col-form-label">{{$profil->jabatan}}</label>
+                                            <!-- <select class="custom-select form-control" required disabled>
                                                 <option selected value="{{$profil->jabatan}}" hidden>{{$profil->jabatan}}</option>
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </div>
                                 </div>
@@ -173,9 +101,10 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <select class="custom-select form-control" required disabled>
+                                            <label class="col-form-label">{{$profil->divisi}}</label>
+                                            <!-- <select class="custom-select form-control" required disabled>
                                                 <option selected value="{{$profil->divisi}}" hidden>{{$profil->divisi}}</option>
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </div>
                                 </div>
@@ -185,9 +114,10 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <select class="custom-select form-control" required disabled>
+                                            <label class="col-form-label">{{$profil->lokasi}}</label>
+                                            <!-- <select class="custom-select form-control" required disabled>
                                                 <option selected value="{{$profil->lokasi}}" hidden>{{$profil->lokasi}}</option>
-                                            </select>
+                                            </select> -->
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +127,8 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="date" class="form-control" value="{{$profil->tanggal_lahir}}" disabled>
+                                            <label class="col-form-label">{{$profil->tanggal_lahir}}</label>
+                                            <!-- <input type="date" class="form-control" value="{{$profil->tanggal_lahir}}" disabled> -->
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +138,8 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="date" class="form-control" value="{{$profil->tanggal_masuk}}" disabled>
+                                            <label class="col-form-label">{{$profil->tanggal_masuk}}</label>
+                                            <!-- <input type="date" class="form-control" value="{{$profil->tanggal_masuk}}" disabled> -->
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +153,8 @@
                                                 <i class="material-icons md-18 text-muted">mail</i>
                                             </div>
                                         </div>
-                                        <input type="text" id="email" class="form-control" placeholder="Email Address" value="contact@mosaicpro.biz" disabled>
+                                        <label class="col-form-label">{{$profil->email}}</label>
+                                        <!-- <input type="text" id="email" class="form-control" placeholder="Email Address" value="{{$profil->email}}" disabled> -->
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +163,8 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input class="form-control" value="0{{$profil->no_telepon}}" disabled>
+                                            <label class="col-form-label">{{$profil->no_telepon}}</label>
+                                            <!-- <input class="form-control" value="0{{$profil->no_telepon}}" disabled> -->
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +174,8 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input class="form-control" value="{{$profil->alamat_ktp}}" disabled>
+                                            <label class="col-form-label">{{$profil->alamat_ktp}}</label>
+                                            <!-- <input class="form-control" value="{{$profil->alamat_ktp}}" disabled> -->
                                         </div>
                                     </div>
                                 </div>
